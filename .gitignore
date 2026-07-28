@@ -31,6 +31,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# personal resume (contains private info — do not commit)
+/*.pdf
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
