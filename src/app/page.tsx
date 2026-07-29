@@ -1,473 +1,444 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect } from "react";
 
 /* ---------- data ---------- */
 
-const ROLES = [
-  'AI 全栈工程师',
-  '技术负责人 / 架构师方向',
-  'Agent 工程实践中',
-];
-
 const CAPABILITIES: { title: string; desc: string }[] = [
-  {
-    title: '技术决策与选型',
-    desc: '主导前端与公司设备对接技术选型，坚持自研路线，参与关键技术问题研讨决策。',
-  },
-  {
-    title: '全栈架构',
-    desc: '搭建 FastAPI + React/Vue 全栈模板，统一 H5、钉钉小程序、Electron 跨端技术栈。',
-  },
-  {
-    title: '0→1 交付与迭代',
-    desc: '主导多个业务系统从核心功能雏形到持续线上运行；带 2 人小团队，协调一线业务对齐内容与功能。',
-  },
-  {
-    title: '数据平台建设',
-    desc: '整合多源异构数据搭建统一数仓，报表覆盖全公司前后台业务部门。',
-  },
-  {
-    title: 'AI 工程实践',
-    desc: '深度使用 Claude Code + MCP/Skills 进行 AI-native 开发，向同事推荐并持续追踪 AI/Agent 前沿。',
-  },
+	{
+		title: "AI 工作流工程化",
+		desc: "在团队中搭建 Claude Code / Pi + Superpowers（头脑风暴→TDD→Review）+ Codegraph（代码记忆）+ Chrome-MCP（前端调试）的工具链组合。用 vibe coding 快速落地设备 SDK 重构并一周交付上线；核心 Agent 代码坚持手写，基础设施用 AI 加速。",
+	},
+	{
+		title: "Agent 核心开发（手写）",
+		desc: "从零实现 ReAct 循环、Event 事件流（TurnStart → UserToken → ToolStart → ToolResult → TurnEnd → RunEnd）、session 持久化、tool calling 流式累积、路径沙箱。研读 pi-agent 源码，学习 SessionTreeEntry（Message / Compaction / BranchSummary / Custom 等十多种 entry）的树形协议设计，以及 SessionStorage 协议接口与具体存储实现解耦的架构思路。",
+	},
+	{
+		title: "本地 SDK 架构与全栈交付",
+		desc: "Python FastAPI 模块化封装扫码枪(pynput+WS)、高拍仪(SDK)、打印管理(SumatraPDF)、SQLite 持久化，中间件分层（ErrorHandler → RequestLogging → RequestID）+ WS 心跳 + 配置热加载。前端 React+TypeScript，对接 HIS 系统；部署脚本全链路（安装→卸载→配置→启动→远程更新）。",
+	},
+	{
+		title: "资源约束下的技术决策",
+		desc: "4 人团队，在需求变动、时间压缩中与领导协商功能取舍（远程升级→砍掉确保交付），推动多外部系统对接。不出于对技术的偏好做决策，而是评估时间、风险、团队能力，将模糊需求拆解为可落地的步骤。",
+	},
 ];
 
-const SKILLS: { group: string; icon: string; items: string[] }[] = [
-  {
-    group: 'AI / LLM',
-    icon: '🤖',
-    items: ['LLM API 集成', 'Prompt Engineering', 'Claude Code / MCP / Skills', 'Agent 应用（开发中）'],
-  },
-  {
-    group: 'Backend',
-    icon: '⚙️',
-    items: ['Python', 'FastAPI', 'Node.js', 'PHP (ThinkPHP)', 'RESTful API'],
-  },
-  {
-    group: 'Frontend',
-    icon: '🎨',
-    items: ['React', 'Vue', 'TypeScript', 'Next.js', 'Electron', '小程序(钉钉/H5)'],
-  },
-  {
-    group: 'Data & Infra',
-    icon: '📊',
-    items: ['爬虫/反爬', 'ETL', '数据仓库', 'WebSocket', '多协议通信', 'Linux 运维', 'Docker', 'CI/CD'],
-  },
+const SKILLS: { group: string; items: string[] }[] = [
+	{
+		group: "Agent 工程",
+		items: [
+			"手写 ReAct 循环",
+			"Session 持久化",
+			"Tool Calling 流式累积",
+			"Eval 评测设计",
+			"MCP / Skills 工具链",
+		],
+	},
+	{
+		group: "AI 工作流",
+		items: [
+			"Claude Code / Pi",
+			"Superpowers (Plan→Spec→TDD)",
+			"Codegraph · Chrome-MCP",
+			"Vibe Coding + 核心手写",
+			"AI-native 开发闭环",
+		],
+	},
+	{
+		group: "后端架构",
+		items: [
+			"Python / FastAPI",
+			"Node.js",
+			"PHP (ThinkPHP)",
+			"RESTful API 设计",
+			"WebSocket 服务",
+			"模块化 SDK 分层",
+		],
+	},
+	{
+		group: "前端 & 终端",
+		items: [
+			"React / TypeScript",
+			"Vue",
+			"Next.js",
+			"Electron",
+			"钉钉小程序 / H5",
+			"跨端技术栈统一",
+		],
+	},
+	{
+		group: "硬件 & 外设集成",
+		items: [
+			"扫码枪 (pynput + WS)",
+			"高拍仪 SDK 对接",
+			"打印管理 / SumatraPDF",
+			"多协议 (蓝牙 / WiFi / 网线)",
+			"HIS 系统对接",
+		],
+	},
+	{
+		group: "数据 & 基础设施",
+		items: [
+			"爬虫",
+			"数据迁移",
+			"SQLite / MySQL",
+			"Docker",
+			"Linux 运维",
+			"离线部署脚本",
+		],
+	},
 ];
 
 const EXPERIENCE: {
-  company: string;
-  role: string;
-  period: string;
-  points: string[];
+	company: string;
+	role: string;
+	period: string;
+	points: string[];
 }[] = [
-  {
-    company: '杭州捍尔目科技集团',
-    role: '全栈开发工程师',
-    period: '2023.01 — 至今',
-    points: [
-      '主导数字化平台技术底座建设：CRM、运营报表、财务 OA、数据看板。',
-      '整合钉钉审批流、ERP 残留数据、纸质文档等多源数据建统一数仓，报表覆盖全公司前后台业务部门。',
-      '主导前端与设备对接技术选型，统一 H5 / 钉钉小程序 / Electron 跨端技术栈。',
-      '带 2 人小团队，协调一线业务人员对齐内容与功能，把控各模块进度。',
-    ],
-  },
-  {
-    company: '东方通信股份有限公司',
-    role: '终端软件工程师（金融事业部）',
-    period: '2021.07 — 2022.12',
-    points: [
-      '两周交付低代码票据可视化工具（React + Vite + 拖拽插件 + SSR），中标三峡银行项目。',
-      'TypeScript 全面重构河北交行智能设备通信 JS-SDK，修复长期重连缺陷，生产环境稳定运行。',
-    ],
-  },
+	{
+		company: "杭州捍尔目科技集团",
+		role: "全栈开发工程师",
+		period: "2023.01 — 至今",
+		points: [
+			"主导数字化平台技术底座建设：CRM、运营报表、财务 OA、数据看板。",
+			"整合钉钉审批流、ERP 残留数据、纸质文档等多源数据建统一数仓，报表覆盖全公司前后台业务部门。",
+			"主导前端与设备对接技术选型，统一 H5 / 钉钉小程序 / Electron 跨端技术栈。",
+			"带 2 人小团队，协调一线业务人员对齐内容与功能，把控各模块进度。",
+		],
+	},
+	{
+		company: "东方通信股份有限公司",
+		role: "终端软件工程师（金融事业部）",
+		period: "2021.07 — 2022.12",
+		points: [
+			"两周交付低代码票据可视化工具（React + Vite + 拖拽插件 + SSR），中标三峡银行项目。",
+			"TypeScript 全面重构河北交行智能设备通信 JS-SDK，修复长期重连缺陷，生产环境稳定运行。",
+		],
+	},
 ];
 
-const PROJECTS: { name: string; stack: string[]; result: string; link?: string }[] = [
-  {
-    name: '渠道数据采集与分析平台',
-    stack: ['Python', '浏览器自动化', 'API 重放'],
-    result: '渠道数据报表与业务实际数据 90%+ 准确率。',
-  },
-  {
-    name: '院点检查数据建档系统',
-    stack: ['Python', 'WebSocket', '多协议通信'],
-    result: '打通多种医疗设备，全流程数字化建档。',
-  },
-  {
-    name: '蒙眼旅人 Blind Traveler',
-    stack: ['Flutter', 'Dart'],
-    result: '获 NCDA 全国高校数字艺术设计大赛浙江省奖。',
-    link: 'https://gitee.com/i3lack/blind_traveler',
-  },
+const PROJECTS: {
+	name: string;
+	stack: string[];
+	result: string;
+	link?: string;
+}[] = [
+	{
+		name: "渠道数据采集与分析平台",
+		stack: ["Python", "浏览器自动化", "API 重放"],
+		result: "渠道数据报表与业务实际数据 90%+ 准确率。",
+	},
+	{
+		name: "院点检查数据建档系统",
+		stack: ["Python", "WebSocket", "多协议通信"],
+		result: "打通多种医疗设备，全流程数字化建档。",
+	},
+	{
+		name: "蒙眼旅人 Blind Traveler",
+		stack: ["Flutter", "Dart"],
+		result: "获 NCDA 全国高校数字艺术设计大赛浙江省三等奖（交互设计组）。",
+		link: "https://gitee.com/i3lack/blind_traveler",
+	},
 ];
 
 const AWARDS: { title: string; year: string }[] = [
-  { title: '浙江省政府奖学金', year: '2021.12' },
-  { title: '浙江省第十六届大学生电子商务大赛 三等奖', year: '2021.06' },
-  { title: 'NCDA 全国高校数字艺术设计大赛 浙江省奖', year: '2021.05' },
-  { title: '绍兴市大数据应用大赛 三等奖', year: '2020.09' },
-  { title: '国家励志奖学金', year: '2019.12' },
+	{ title: "浙江省政府奖学金", year: "2021.12" },
+	{ title: "浙江省第十六届大学生电子商务大赛 三等奖", year: "2021.06" },
+	{ title: "NCDA 全国高校数字艺术设计大赛 浙江省三等奖（交互设计组）", year: "2021.05" },
+	{ title: "绍兴市大数据应用大赛 三等奖", year: "2020.09" },
+	{ title: "国家励志奖学金", year: "2019.12" },
 ];
 
 const EXPLORING: string[] = [
-  'Agent 应用开发 — 不止于调用 LLM API，深入提示工程与 Agent 运行原理，开源项目开发中。',
-  '生产级 Agent 架构 — 研究工业级 Agent 系统的工程化设计。',
-  'AI 工作流工具链 — Claude Code + OMC / MCP / Skills 的实际工程落地。',
+	"手写 Agent Core — 从零实现 ReAct 循环 + session 持久化 + tool calling 累积 + 路径沙箱。研读 pi-agent 工业级源码，学习将 session 设计为 Entry+Leaf 指针管理的树形协议，逐步向协议化抽象演进。",
+	"Eval 驱动开发 — 为 Agent 系统设计可量化的评测体系，验证工具调用正确率与 session 恢复可靠性。",
+	"视觉创作 Agent 应用 — 计划在学习 Agent 架构模式后，基于成熟框架构建面向摄影/视觉创作领域的工业级生成式 Agent。",
 ];
 
-const HOBBIES: string[] = ['🏀 篮球', '🖊️ 书法', '📷 摄影', '✍️ 手写提示词'];
+const HOBBIES: string[] = ["🏀 篮球", "🖊️ 书法", "📷 摄影"];
 
 /* ---------- hooks ---------- */
 
-function useTyping(words: string[]) {
-  const [text, setText] = useState('');
-  const [i, setI] = useState(0);
-  const [del, setDel] = useState(false);
-
-  useEffect(() => {
-    const current = words[i % words.length];
-    let t: ReturnType<typeof setTimeout>;
-    if (!del && text === current) {
-      t = setTimeout(() => setDel(true), 1600);
-    } else if (del && text === '') {
-      setDel(false);
-      setI((v) => v + 1);
-    } else {
-      t = setTimeout(
-        () => setText(del ? current.slice(0, text.length - 1) : current.slice(0, text.length + 1)),
-        del ? 45 : 90
-      );
-    }
-    return () => clearTimeout(t);
-  }, [text, del, i, words]);
-
-  return text;
-}
-
-function useReveal() {
-  useEffect(() => {
-    const els = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('in')),
-      { threshold: 0.12 }
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
+function useRevealOnce() {
+	useEffect(() => {
+		const els = document.querySelectorAll(".reveal");
+		const io = new IntersectionObserver(
+			(entries) =>
+				entries.forEach((e) => {
+					if (e.isIntersecting) {
+						e.target.classList.add("in");
+						io.unobserve(e.target);
+					}
+				}),
+			{ threshold: 0.08 },
+		);
+		els.forEach((el) => io.observe(el));
+		return () => io.disconnect();
+	}, []);
 }
 
 /* ---------- components ---------- */
 
+const NAV_LINKS: [string, string][] = [
+	["capabilities", "能力"],
+	["stack", "技术栈"],
+	["experience", "经历"],
+	["projects", "项目"],
+	["awards", "获奖"],
+	["exploring", "探索"],
+];
+
 function Nav() {
-  const links: [string, string][] = [
-    ['capabilities', '能力'],
-    ['stack', '技术栈'],
-    ['experience', '经历'],
-    ['projects', '项目'],
-    ['awards', '获奖'],
-  ];
-  return (
-    <nav className="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-ink-950/70 backdrop-blur-md">
-      <div className="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between font-mono text-sm">
-        <a href="#top" className="text-neon-green glow-green">
-          black<span className="text-white/40">@</span>ii3lack<span className="caret align-middle" />
-        </a>
-        <div className="hidden sm:flex items-center gap-6 text-white/60">
-          {links.map(([id, label]) => (
-            <a key={id} href={`#${id}`} className="hover:text-neon-green transition-colors">
-              {label}
-            </a>
-          ))}
-        </div>
-        <a
-          href="https://github.com/ii3lack"
-          target="_blank"
-          rel="noreferrer"
-          className="text-white/60 hover:text-neon-green transition-colors"
-        >
-          GitHub ↗
-        </a>
-      </div>
-    </nav>
-  );
+	return (
+		<nav className="nav-masthead" aria-label="Primary">
+			<div className="nav-masthead__inner">
+				<a className="nav-masthead__wordmark" href="#top">
+					BLACK
+				</a>
+				<ul className="nav-masthead__links">
+					{NAV_LINKS.map(([id, label]) => (
+						<li key={id}>
+							<a href={`#${id}`}>{label}</a>
+						</li>
+					))}
+				</ul>
+				<a className="nav-masthead__cta" href="mailto:black524726@163.com">
+					邮箱 →
+				</a>
+			</div>
+		</nav>
+	);
 }
 
 function Hero() {
-  const typed = useTyping(ROLES);
-  return (
-    <header id="top" className="relative min-h-screen flex items-center justify-center px-5 overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-60 [mask-image:radial-gradient(circle_at_center,black,transparent_75%)]" />
-      <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-neon-green/10 blur-3xl animate-float-slow" />
-      <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-neon-cyan/10 blur-3xl animate-float-slower" />
-
-      <div className="relative w-full max-w-2xl">
-        <div className="card scanlines relative overflow-hidden">
-          <div className="flex items-center gap-2 px-4 h-9 border-b border-white/5 bg-white/[0.02]">
-            <span className="term-dot bg-[#ff5f56]" />
-            <span className="term-dot bg-[#ffbd2e]" />
-            <span className="term-dot bg-[#27c93f]" />
-            <span className="ml-3 text-xs font-mono text-white/40">~/black — zsh</span>
-          </div>
-          <div className="p-6 sm:p-8 font-mono text-sm sm:text-base leading-relaxed">
-            <p className="text-white/50">
-              <span className="text-neon-green">➜</span> <span className="text-neon-cyan">~</span> whoami
-            </p>
-            <p className="mt-1 text-xl sm:text-2xl text-white font-semibold">
-              Black<span className="caret" />
-            </p>
-            <p className="mt-5 text-white/50">
-              <span className="text-neon-green">➜</span> <span className="text-neon-cyan">~</span> cat role.txt
-            </p>
-            <p className="mt-1 text-neon-green glow-green">
-              {typed}
-              <span className="caret" />
-            </p>
-            <p className="mt-5 text-white/50">
-              <span className="text-neon-green">➜</span> <span className="text-neon-cyan">~</span> location --current
-            </p>
-            <p className="mt-1 text-white/80">Hangzhou, Zhejiang · 浙江杭州</p>
-            <p className="mt-5 text-white/50">
-              <span className="text-neon-green">➜</span> <span className="text-neon-cyan">~</span> status
-            </p>
-            <p className="mt-1 text-white/80">
-              在职 · 3 年以上全栈 · <span className="text-neon-purple">目标：技术负责人 / 架构师 / AI 方向</span>
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="mailto:black524726@163.com"
-            className="chip border-neon-green/40 text-neon-green hover:bg-neon-green/10"
-          >
-            ✉️ 邮箱
-          </a>
-          <a href="https://github.com/ii3lack" target="_blank" rel="noreferrer" className="chip">
-            💻 GitHub
-          </a>
-          <a href="#capabilities" className="chip">
-            📁 核心能力
-          </a>
-        </div>
-      </div>
-    </header>
-  );
+	return (
+		<header id="top" className="hero">
+			<p
+				className="hero__quote reveal"
+				style={{ "--i": 0 } as React.CSSProperties}
+			>
+				&ldquo;Functions describe the world.&rdquo;
+			</p>
+			<p
+				className="hero__attribution reveal"
+				style={{ "--i": 1 } as React.CSSProperties}
+			>
+				Thomas A. Garrity
+			</p>
+			<h1
+				className="hero__title reveal"
+				style={{ "--i": 2 } as React.CSSProperties}
+			>
+				AI 全栈工程师 · 杭州 · 4 年经验
+			</h1>
+			<p
+				className="hero__sub reveal"
+				style={{ "--i": 3 } as React.CSSProperties}
+			>
+				目标：技术负责人 / Agent 应用开发 / AI 全栈工程师
+			</p>
+			<a
+				className="hero__cta reveal"
+				style={{ "--i": 4 } as React.CSSProperties}
+				href="mailto:black524726@163.com"
+			>
+				联系
+			</a>
+		</header>
+	);
 }
 
-function SectionHead({ idx, title, sub }: { idx: string; title: string; sub: string }) {
-  return (
-    <div className="reveal mb-10 flex items-end justify-between gap-4 border-b border-white/5 pb-4">
-      <div>
-        <p className="idx">{idx}</p>
-        <h2 className="mt-1 text-2xl sm:text-3xl font-bold tracking-tight">{title}</h2>
-      </div>
-      <p className="hidden sm:block font-mono text-xs text-white/40">{'// '}{sub}</p>
-    </div>
-  );
+function Strip() {
+	return (
+		<div className="strip reveal" style={{ "--i": 5 } as React.CSSProperties}>
+			<div className="strip__col">
+				<p className="strip__label">状态</p>
+				<p className="strip__value">在职</p>
+				<p className="strip__label" style={{ marginTop: "var(--space-lg)" }}>
+					坐标
+				</p>
+				<p className="strip__value">浙江杭州</p>
+				<p className="strip__label" style={{ marginTop: "var(--space-lg)" }}>
+					年限
+				</p>
+				<p className="strip__value">4 年全栈</p>
+				<p className="strip__label" style={{ marginTop: "var(--space-lg)" }}>
+					目标
+				</p>
+				<p className="strip__value">
+					技术负责人 / Agent 应用开发
+					<br />
+					AI 全栈工程师
+				</p>
+			</div>
+			<div className="strip__col">
+				<p className="strip__label">联系</p>
+				<a className="clink" href="mailto:black524726@163.com">
+					<span className="clink__label">邮箱</span>
+					<span className="clink__value">black524726@163.com</span>
+				</a>
+				<a
+					className="clink"
+					href="https://github.com/ii3lack"
+					target="_blank"
+					rel="noreferrer"
+				>
+					<span className="clink__label">GitHub</span>
+					<span className="clink__value">ii3lack ↗</span>
+				</a>
+				<a
+					className="clink"
+					href="https://ii3lack.github.io/ii3lack"
+					target="_blank"
+					rel="noreferrer"
+				>
+					<span className="clink__label">在线简历</span>
+					<span className="clink__value">ii3lack.github.io ↗</span>
+				</a>
+			</div>
+		</div>
+	);
 }
 
-function Capabilities() {
-  return (
-    <section id="capabilities" className="max-w-5xl mx-auto px-5 py-24">
-      <SectionHead idx="01." title="核心能力" sub="Capabilities" />
-      <p className="reveal mb-8 text-white/70 leading-relaxed">
-        全栈工程师出身，主导技术选型与多业务系统 0→1 交付，目标向{' '}
-        <span className="text-neon-green">技术负责人 / 架构师 / AI 方向</span> 发展。
-      </p>
-      <div className="grid sm:grid-cols-2 gap-5">
-        {CAPABILITIES.map((c) => (
-          <div key={c.title} className="reveal card p-6">
-            <h3 className="font-semibold text-neon-green mb-2">{c.title}</h3>
-            <p className="text-sm text-white/70 leading-relaxed">{c.desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Skills() {
-  return (
-    <section id="stack" className="max-w-5xl mx-auto px-5 py-24">
-      <SectionHead idx="02." title="技术栈" sub="Tech Stack" />
-      <div className="grid sm:grid-cols-2 gap-5">
-        {SKILLS.map((s) => (
-          <div key={s.group} className="reveal card p-6">
-            <h3 className="font-mono text-sm text-white/50 mb-4">
-              <span className="mr-2">{s.icon}</span>
-              {s.group}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {s.items.map((it) => (
-                <span key={it} className="chip">
-                  {it}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Experience() {
-  return (
-    <section id="experience" className="max-w-5xl mx-auto px-5 py-24">
-      <SectionHead idx="03." title="经历锚点" sub="Experience" />
-      <div className="relative pl-8 border-l border-white/10">
-        {EXPERIENCE.map((job) => (
-          <div key={job.company} className="reveal relative mb-12 last:mb-0">
-            <span className="tl-node" />
-            <div className="card p-6">
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-lg font-semibold">{job.company}</h3>
-                <span className="font-mono text-xs text-neon-green">{job.period}</span>
-              </div>
-              <p className="mt-1 text-sm text-white/60">{job.role}</p>
-              <ul className="mt-4 space-y-2 text-sm text-white/75 leading-relaxed">
-                {job.points.map((p, i) => (
-                  <li key={i} className="flex gap-2">
-                    <span className="text-neon-green shrink-0">▸</span>
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Projects() {
-  return (
-    <section id="projects" className="max-w-5xl mx-auto px-5 py-24">
-      <SectionHead idx="04." title="项目亮点" sub="Projects" />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {PROJECTS.map((p) => (
-          <div key={p.name} className="reveal card p-6 flex flex-col">
-            <h3 className="font-semibold text-white">{p.name}</h3>
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {p.stack.map((s) => (
-                <span key={s} className="font-mono text-[11px] text-neon-cyan/80">
-                  {s}
-                </span>
-              ))}
-            </div>
-            <p className="mt-4 text-sm text-neon-green/90 border-t border-white/5 pt-3 flex-1">
-              <span className="font-mono text-white/40 text-xs">result → </span>
-              {p.result}
-            </p>
-            {p.link && (
-              <a
-                href={p.link}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-3 font-mono text-xs text-neon-cyan hover:text-neon-green transition-colors"
-              >
-                ↗ view source
-              </a>
-            )}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Awards() {
-  return (
-    <section id="awards" className="max-w-5xl mx-auto px-5 py-24">
-      <SectionHead idx="05." title="获奖与教育" sub="Awards & Education" />
-      <div className="grid sm:grid-cols-3 gap-6">
-        <div className="reveal card p-6 sm:col-span-1">
-          <h3 className="font-mono text-sm text-white/50">education</h3>
-          <p className="mt-3 font-semibold">浙江越秀外国语学院</p>
-          <p className="text-sm text-white/60">数字媒体技术 · 本科 · 网络传播学院</p>
-          <p className="mt-2 font-mono text-xs text-neon-green">2018.09 — 2022.06 · 浙江绍兴</p>
-        </div>
-        <div className="reveal card p-6 sm:col-span-2">
-          <h3 className="font-mono text-sm text-white/50 mb-4">awards</h3>
-          <ul className="space-y-3">
-            {AWARDS.map((a) => (
-              <li key={a.title} className="flex items-center justify-between gap-3 text-sm">
-                <span className="text-white/80">
-                  <span className="text-neon-green mr-2">🏅</span>
-                  {a.title}
-                </span>
-                <span className="font-mono text-xs text-white/40">{a.year}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="reveal mt-10 card p-6">
-        <h3 className="font-mono text-sm text-white/50 mb-4">{'// 正在探索'}</h3>
-        <ul className="space-y-2.5">
-          {EXPLORING.map((e) => (
-            <li key={e} className="flex gap-2 text-sm text-white/75 leading-relaxed">
-              <span className="text-neon-purple shrink-0">→</span>
-              <span>{e}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="reveal mt-6 flex flex-wrap gap-2">
-        {HOBBIES.map((h) => (
-          <span key={h} className="chip">
-            {h}
-          </span>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="border-t border-white/5 mt-10">
-      <div className="max-w-5xl mx-auto px-5 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-sm">
-        <p className="text-white/40">
-          <span className="text-neon-green">➜</span> built with Next.js · Tailwind · ☕
-        </p>
-        <div className="flex gap-5 text-white/60">
-          <a href="mailto:black524726@163.com" className="hover:text-neon-green transition-colors">
-            邮箱
-          </a>
-          <a href="https://github.com/ii3lack" target="_blank" rel="noreferrer" className="hover:text-neon-green transition-colors">
-            GitHub
-          </a>
-          <a href="#top" className="hover:text-neon-green transition-colors">
-            ↑ top
-          </a>
-        </div>
-      </div>
-    </footer>
-  );
+function Section({
+	id,
+	num,
+	title,
+	children,
+}: {
+	id?: string;
+	num: string;
+	title: string;
+	children: React.ReactNode;
+}) {
+	return (
+		<section id={id} className="section reveal">
+			<div className="section__head">
+				<span className="section__num">{num}</span>
+				<h2 className="section__title">{title}</h2>
+			</div>
+			{children}
+		</section>
+	);
 }
 
 /* ---------- page ---------- */
 
 export default function Home() {
-  useReveal();
-  return (
-    <>
-      <Nav />
-      <Hero />
-      <main>
-        <Capabilities />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Awards />
-      </main>
-      <Footer />
-    </>
-  );
+	useRevealOnce();
+	const hobbies = HOBBIES.map((h) => h.split(" ").slice(1).join(" ")).join(
+		" · ",
+	);
+
+	return (
+		<>
+			<Nav />
+			<div className="shell">
+				<Hero />
+				<Strip />
+
+				<Section id="capabilities" num="01" title="核心能力">
+					{CAPABILITIES.map((c, idx) => (
+						<div key={c.title} className="cap">
+							<p className="cap__num">{(idx + 1).toString().padStart(2, "0")}</p>
+							<h3 className="cap__name">{c.title}</h3>
+							<p className="cap__desc">{c.desc}</p>
+						</div>
+					))}
+				</Section>
+
+				<Section id="stack" num="02" title="技术栈">
+					{SKILLS.map((s) => (
+						<div key={s.group} className="sgroup">
+							<p className="sgroup__label">{s.group}</p>
+							<p className="sgroup__items">{s.items.join(" · ")}</p>
+						</div>
+					))}
+				</Section>
+
+				<Section id="experience" num="03" title="工作经历">
+					{EXPERIENCE.map((job) => (
+						<div key={job.company} className="xjob">
+							<p className="xjob__period">{job.period}</p>
+							<h3 className="xjob__company">{job.company}</h3>
+							<p className="xjob__role">{job.role}</p>
+							<ul className="xjob__points">
+								{job.points.map((p, idx) => (
+									<li key={idx}>{p}</li>
+								))}
+							</ul>
+						</div>
+					))}
+				</Section>
+
+				<Section id="projects" num="04" title="项目精选">
+					{PROJECTS.map((p) => (
+						<div key={p.name} className="proj">
+							<h3 className="proj__name">
+								{p.name}
+								{p.link && (
+									<>
+										{" "}
+										<a
+											href={p.link}
+											target="_blank"
+											rel="noreferrer"
+											className="proj__arrow"
+										>
+											↗
+										</a>
+									</>
+								)}
+							</h3>
+							<p className="proj__stack">{p.stack.join(" · ")}</p>
+							<p className="proj__result">
+								<span className="proj__arrow">→</span> {p.result}
+							</p>
+						</div>
+					))}
+				</Section>
+
+				<Section id="exploring" num="05" title="正在探索">
+					{EXPLORING.map((e) => (
+						<p key={e} className="xitem">
+							<span className="xitem__arrow">→</span> {e}
+						</p>
+					))}
+				</Section>
+
+				<Section id="awards" num="06" title="获奖与教育">
+					<p className="edu">浙江越秀外国语学院 · 数字媒体技术 本科</p>
+					<p className="edu" style={{ marginTop: "0.125rem" }}>
+						2018.09 — 2022.06 · 浙江绍兴
+					</p>
+					<div className="awards">
+						{AWARDS.map((a) => (
+							<div key={a.title} className="award">
+								<span className="award__year">{a.year}</span>
+								<span className="award__title">{a.title}</span>
+							</div>
+						))}
+					</div>
+				</Section>
+
+				<footer className="footer">
+					<div className="footer__meta">
+						<span>black · {hobbies} · © 2026</span>
+						<span>
+							<a href="mailto:black524726@163.com">邮箱</a>
+							{" · "}
+							<a
+								href="https://github.com/ii3lack"
+								target="_blank"
+								rel="noreferrer"
+							>
+								GitHub
+							</a>
+							{" · Next.js · Fraunces + JetBrains Mono"}
+						</span>
+					</div>
+				</footer>
+			</div>
+		</>
+	);
 }

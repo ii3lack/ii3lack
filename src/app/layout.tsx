@@ -1,11 +1,33 @@
 import type { Metadata } from "next";
+import { Fraunces, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+
+const display = Fraunces({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700"],
+	display: "swap",
+	variable: "--font-display",
+});
+
+const body = IBM_Plex_Sans({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+	display: "swap",
+	variable: "--font-body",
+});
+
+const mono = JetBrains_Mono({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+	display: "swap",
+	variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://ii3lack.github.io/ii3lack"),
 	title: "Black · AI 全栈工程师",
 	description:
-		"Black — AI 全栈工程师，坐标杭州。Python · JS/TS · Node.js · Agent 工程实践中。",
+		"Black — AI 全栈工程师，坐标杭州。4 年全栈，目标：技术负责人 / Agent 应用开发 / AI 全栈工程师。",
 	keywords: [
 		"Black",
 		"AI 全栈工程师",
@@ -18,7 +40,8 @@ export const metadata: Metadata = {
 	authors: [{ name: "Black", url: "https://github.com/ii3lack" }],
 	openGraph: {
 		title: "Black · AI 全栈工程师",
-		description: "AI 全栈工程师 · 杭州 · 3 年以上全栈 · Agent 工程实践中",
+		description:
+			"AI 全栈工程师 · 杭州 · 4 年全栈 · 目标：技术负责人 / Agent 应用开发 / AI 全栈工程师",
 		type: "website",
 		url: "https://ii3lack.github.io/ii3lack",
 	},
@@ -30,8 +53,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="zh-CN">
-			<body className="font-sans antialiased">{children}</body>
+		<html
+			lang="zh-CN"
+			className={`${display.variable} ${body.variable} ${mono.variable}`}
+		>
+			<body>{children}</body>
 		</html>
 	);
 }
