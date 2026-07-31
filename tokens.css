@@ -1,21 +1,22 @@
 /* Hallmark · tokens.css — portable token export
- * source: src/app/globals.css (technical slate theme)
- * macrostructure: Specimen · nav: N6 · footer: Ft1
- * theme: custom · vibe: "precision, engineered, cool, restrained"
- * paper: oklch(97% 0.004 250) · accent: oklch(58% 0.16 250)
+ * source: src/app/globals.css (warm paper theme)
+ * macrostructure: Letter · nav: N6 · footer: Ft1
+ * theme: custom · vibe: "precision, engineered, warm, restrained"
+ * paper: oklch(96% 0.008 80) · accent: oklch(58% 0.16 250)
  */
 :root {
-	--color-paper: oklch(97% 0.004 250);
-	--color-paper-2: oklch(94% 0.006 250);
-	--color-paper-3: oklch(90% 0.008 250);
-	--color-rule: oklch(84% 0.010 250);
-	--color-rule-2: oklch(72% 0.010 250);
-	--color-muted: oklch(54% 0.012 250);
-	--color-neutral: oklch(36% 0.014 250);
-	--color-ink-2: oklch(24% 0.014 250);
-	--color-ink: oklch(16% 0.012 250);
+	--color-paper: oklch(96% 0.008 80);
+	--color-paper-2: oklch(93% 0.010 80);
+	--color-paper-3: oklch(89% 0.012 80);
+	--color-rule: oklch(82% 0.012 80);
+	--color-rule-2: oklch(70% 0.012 80);
+	--color-muted: oklch(52% 0.014 80);
+	--color-neutral: oklch(38% 0.016 80);
+	--color-ink-2: oklch(26% 0.016 80);
+	--color-ink: oklch(18% 0.014 80);
 	--color-accent: oklch(58% 0.16 250);
 	--color-accent-ink: oklch(45% 0.18 250);
+	--color-accent-soft: oklch(58% 0.16 250 / 0.08);
 	--color-focus: oklch(58% 0.18 250);
 
 	--font-display:
@@ -67,16 +68,18 @@
 	--rule-hair: 0.5px;
 	--rule-fine: 1px;
 
-	--radius-card: 0;
-	--radius-pill: 0;
-	--radius-input: 0;
+	--radius-card: 6px;
+	--radius-pill: 100px;
+	--radius-input: 4px;
 	--rule-card: 1px;
-	--shadow-card: none;
+	--shadow-card: 0 1px 3px oklch(18% 0.014 80 / 0.06);
+	--shadow-card-hover: 0 4px 12px oklch(18% 0.014 80 / 0.1);
 
 	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 	--ease-in: cubic-bezier(0.7, 0, 0.84, 0);
 	--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 	--dur-micro: 120ms;
 	--dur-short: 220ms;
+	--dur-med: 320ms;
 	--dur-long: 420ms;
 }

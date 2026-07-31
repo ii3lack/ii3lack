@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 /* ---------- data ---------- */
 
@@ -159,9 +159,9 @@ const HOBBIES: string[] = ["🏀 篮球", "🖊️ 书法", "📷 摄影"];
 
 /* ---------- hooks ---------- */
 
-function useRevealOnce() {
+function useRevealHero() {
 	useEffect(() => {
-		const els = document.querySelectorAll(".reveal");
+		const els = document.querySelectorAll(".hero .reveal");
 		const io = new IntersectionObserver(
 			(entries) =>
 				entries.forEach((e) => {
@@ -177,6 +177,85 @@ function useRevealOnce() {
 	}, []);
 }
 
+function useScrollProgress() {
+	useEffect(() => {
+		const bar = document.querySelector(".scroll-progress__bar") as HTMLElement;
+		if (!bar) return;
+
+		const update = () => {
+			const scrollTop = window.scrollY;
+			const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+			const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+			bar.style.transform = `scaleX(${progress})`;
+		};
+
+		window.addEventListener("scroll", update, { passive: true });
+		update();
+		return () => window.removeEventListener("scroll", update);
+	}, []);
+}
+
+function useNavScroll() {
+	useEffect(() => {
+		const nav = document.querySelector(".nav-masthead") as HTMLElement;
+		if (!nav) return;
+
+		const update = () => {
+			if (window.scrollY > 50) {
+				nav.classList.add("is-scrolled");
+			} else {
+				nav.classList.remove("is-scrolled");
+			}
+		};
+
+		window.addEventListener("scroll", update, { passive: true });
+		update();
+		return () => window.removeEventListener("scroll", update);
+	}, []);
+}
+
+function useActiveNav() {
+	const [active, setActive] = useState("top");
+
+	useEffect(() => {
+		const sections = document.querySelectorAll("section[id]");
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						setActive(entry.target.id);
+					}
+				});
+			},
+			{ rootMargin: "-20% 0px -70% 0px" },
+		);
+
+		sections.forEach((s) => observer.observe(s));
+		return () => observer.disconnect();
+	}, []);
+
+	return active;
+}
+
+function useTimelineDots() {
+	useEffect(() => {
+		const jobs = document.querySelectorAll(".xjob");
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((e) => {
+					if (e.isIntersecting) {
+						e.target.classList.add("is-visible");
+					}
+				});
+			},
+			{ threshold: 0.3 },
+		);
+
+		jobs.forEach((j) => observer.observe(j));
+		return () => observer.disconnect();
+	}, []);
+}
+
 /* ---------- components ---------- */
 
 const NAV_LINKS: [string, string][] = [
@@ -189,8 +268,13 @@ const NAV_LINKS: [string, string][] = [
 ];
 
 function Nav() {
+	const active = useActiveNav();
+
 	return (
 		<nav className="nav-masthead" aria-label="Primary">
+			<div className="scroll-progress">
+				<div className="scroll-progress__bar" />
+			</div>
 			<div className="nav-masthead__inner">
 				<a className="nav-masthead__wordmark" href="#top">
 					BLACK
@@ -198,7 +282,12 @@ function Nav() {
 				<ul className="nav-masthead__links">
 					{NAV_LINKS.map(([id, label]) => (
 						<li key={id}>
-							<a href={`#${id}`}>{label}</a>
+							<a
+								href={`#${id}`}
+								className={active === id ? "is-active" : ""}
+							>
+								{label}
+							</a>
 						</li>
 					))}
 				</ul>
@@ -243,6 +332,7 @@ function Hero() {
 				href="mailto:black524726@163.com"
 			>
 				联系
+				<span className="hero__cta-icon">→</span>
 			</a>
 		</header>
 	);
@@ -302,19 +392,16 @@ function Strip() {
 
 function Section({
 	id,
-	num,
 	title,
 	children,
 }: {
 	id?: string;
-	num: string;
 	title: string;
 	children: React.ReactNode;
 }) {
 	return (
-		<section id={id} className="section reveal">
+		<section id={id} className="section">
 			<div className="section__head">
-				<span className="section__num">{num}</span>
 				<h2 className="section__title">{title}</h2>
 			</div>
 			{children}
@@ -322,10 +409,51 @@ function Section({
 	);
 }
 
+function CapabilityAccordion({
+	cap,
+	index,
+}: {
+	cap: (typeof CAPABILITIES)[0];
+	index: number;
+}) {
+	const [isOpen, setIsOpen] = useState(false);
+	const contentRef = useRef<HTMLDivElement>(null);
+
+	return (
+		<div className={`cap ${isOpen ? "is-open" : ""}`}>
+			<div
+				className="cap__header"
+				onClick={() => setIsOpen(!isOpen)}
+				onKeyDown={(e) => {
+					if (e.key === "Enter" || e.key === " ") {
+						e.preventDefault();
+						setIsOpen(!isOpen);
+					}
+				}}
+				role="button"
+				tabIndex={0}
+				aria-expanded={isOpen}
+			>
+				<span className="cap__num">
+					{(index + 1).toString().padStart(2, "0")}
+				</span>
+				<h3 className="cap__name">{cap.title}</h3>
+				<span className="cap__toggle">+</span>
+			</div>
+			<div className="cap__body" ref={contentRef}>
+				<p className="cap__desc">{cap.desc}</p>
+			</div>
+		</div>
+	);
+}
+
 /* ---------- page ---------- */
 
 export default function Home() {
-	useRevealOnce();
+	useRevealHero();
+	useScrollProgress();
+	useNavScroll();
+	useTimelineDots();
 	const hobbies = HOBBIES.map((h) => h.split(" ").slice(1).join(" ")).join(
 		" · ",
 	);
@@ -337,48 +465,51 @@ export default function Home() {
 				<Hero />
 				<Strip />
 
-				<Section id="capabilities" num="01" title="核心能力">
+				<Section id="capabilities" title="核心能力">
 					{CAPABILITIES.map((c, idx) => (
-						<div key={c.title} className="cap">
-							<p className="cap__num">{(idx + 1).toString().padStart(2, "0")}</p>
-							<h3 className="cap__name">{c.title}</h3>
-							<p className="cap__desc">{c.desc}</p>
-						</div>
+						<CapabilityAccordion key={c.title} cap={c} index={idx} />
 					))}
 				</Section>
 
-				<Section id="stack" num="02" title="技术栈">
+				<Section id="stack" title="技术栈">
 					{SKILLS.map((s) => (
 						<div key={s.group} className="sgroup">
 							<p className="sgroup__label">{s.group}</p>
-							<p className="sgroup__items">{s.items.join(" · ")}</p>
-						</div>
-					))}
-				</Section>
-
-				<Section id="experience" num="03" title="工作经历">
-					{EXPERIENCE.map((job) => (
-						<div key={job.company} className="xjob">
-							<p className="xjob__period">{job.period}</p>
-							<h3 className="xjob__company">{job.company}</h3>
-							<p className="xjob__role">{job.role}</p>
-							<ul className="xjob__points">
-								{job.points.map((p, idx) => (
-									<li key={idx}>{p}</li>
+							<div className="sgroup__items">
+								{s.items.map((item) => (
+									<span key={item} className="sgroup__tag">
+										{item}
+									</span>
 								))}
-							</ul>
+							</div>
 						</div>
 					))}
 				</Section>
 
-				<Section id="projects" num="04" title="项目精选">
-					{PROJECTS.map((p) => (
-						<div key={p.name} className="proj">
-							<h3 className="proj__name">
-								{p.name}
-								{p.link && (
-									<>
-										{" "}
+				<Section id="experience" title="工作经历">
+					<div className="timeline">
+						{EXPERIENCE.map((job) => (
+							<div key={job.company} className="xjob">
+								<p className="xjob__period">{job.period}</p>
+								<h3 className="xjob__company">{job.company}</h3>
+								<p className="xjob__role">{job.role}</p>
+								<ul className="xjob__points">
+									{job.points.map((p, idx) => (
+										<li key={idx}>{p}</li>
+									))}
+								</ul>
+							</div>
+						))}
+					</div>
+				</Section>
+
+				<Section id="projects" title="项目精选">
+					<div className="projects-grid">
+						{PROJECTS.map((p) => (
+							<div key={p.name} className="proj">
+								<h3 className="proj__name">
+									{p.name}
+									{p.link && (
 										<a
 											href={p.link}
 											target="_blank"
@@ -387,18 +518,18 @@ export default function Home() {
 										>
 											↗
 										</a>
-									</>
-								)}
-							</h3>
-							<p className="proj__stack">{p.stack.join(" · ")}</p>
-							<p className="proj__result">
-								<span className="proj__arrow">→</span> {p.result}
-							</p>
-						</div>
-					))}
+									)}
+								</h3>
+								<p className="proj__stack">{p.stack.join(" · ")}</p>
+								<p className="proj__result">
+									<span className="proj__result-arrow">→</span> {p.result}
+								</p>
+							</div>
+						))}
+					</div>
 				</Section>
 
-				<Section id="exploring" num="05" title="正在探索">
+				<Section id="exploring" title="正在探索">
 					{EXPLORING.map((e) => (
 						<p key={e} className="xitem">
 							<span className="xitem__arrow">→</span> {e}
@@ -406,7 +537,7 @@ export default function Home() {
 					))}
 				</Section>
 
-				<Section id="awards" num="06" title="获奖与教育">
+				<Section id="awards" title="获奖与教育">
 					<p className="edu">浙江越秀外国语学院 · 数字媒体技术 本科</p>
 					<p className="edu" style={{ marginTop: "0.125rem" }}>
 						2018.09 — 2022.06 · 浙江绍兴
