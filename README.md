@@ -2,16 +2,11 @@
 
 <a href="https://ii3lack.github.io/ii3lack"><img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=28&duration=3000&pause=1000&color=4A90D9&center=true&vCenter=true&random=false&width=620&lines=%E4%BD%A0%E5%A5%BD%2C+%E6%88%91%E6%98%AF+Black+%F0%9F%91%8B;Functions+describe+the+world;AI+%E5%85%A8%E6%A0%88%E5%B7%A5%E7%A8%8B%E5%B8%88;Agent+%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%E8%80%85" alt="打字动画" /></a>
 
-<p><em>AI 全栈工程师 · 杭州 · 4 年经验 · 目标：技术负责人 / Agent 应用开发 / AI 全栈工程师</em></p>
+### `AI 全栈工程师 · 杭州 · 4 年经验 · 目标：技术负责人 / Agent 应用开发 / AI 全栈工程师`
 
-<p>
-  <a href="mailto:black524726@163.com"><img src="https://img.shields.io/badge/邮箱-black524726@163.com-4A90D9?style=for-the-badge&logo=gmail&logoColor=white" /></a>
-  <a href="https://github.com/ii3lack"><img src="https://img.shields.io/badge/GitHub-ii3lack-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
-  <a href="https://ii3lack.github.io/ii3lack"><img src="https://img.shields.io/badge/在线简历-ii3lack.github.io-4A90D9?style=for-the-badge&logo=vercel&logoColor=white" /></a>
-</p>
+<a href="mailto:black524726@163.com"><img src="https://img.shields.io/badge/邮箱-black524726@163.com-4A90D9?style=for-the-badge&logo=gmail&logoColor=white" /></a> <a href="https://github.com/ii3lack"><img src="https://img.shields.io/badge/GitHub-ii3lack-181717?style=for-the-badge&logo=github&logoColor=white" /></a> <a href="https://ii3lack.github.io/ii3lack"><img src="https://img.shields.io/badge/在线简历-ii3lack.github.io-4A90D9?style=for-the-badge&logo=vercel&logoColor=white" /></a>
 
-<img src="https://komarev.com/ghpvc/?username=ii3lack&label=主页访问&color=4A90D9&style=flat-square" alt="主页访问量" />
-<img src="https://img.shields.io/github/followers/ii3lack?label=关注者&style=flat-square&color=4A90D9" alt="关注者" />
+<img src="https://img.shields.io/badge/主页访问-38-4A90D9?style=flat-square&labelColor=555" alt="主页访问量" /> <img src="https://img.shields.io/github/followers/ii3lack?label=%E5%85%B3%E6%B3%A8%E8%80%85&style=flat-square&color=4A90D9&labelColor=555" alt="关注者" />
 
 </div>
 
@@ -30,30 +25,28 @@
 
 ### 🛠️ 技术栈
 
-**🧠 Agent 工程**
-`手写 ReAct 循环` `Session 持久化` `Tool Calling 流式累积` `Eval 评测设计` `MCP / Skills 工具链`
-
-**🤖 AI 工作流**
-`Claude Code / Pi` `Superpowers (Plan→Spec→TDD)` `Codegraph · Chrome-MCP` `Vibe Coding + 核心手写`
+> **🧠 Agent 工程**
+>
+> `手写 ReAct 循环` `Session 持久化` `Tool Calling 流式累积` `Eval 评测设计` `MCP / Skills 工具链`
+>
+> **🤖 AI 工作流**
+>
+> `Claude Code / Pi` `Superpowers (Plan→Spec→TDD)` `Codegraph · Chrome-MCP` `Vibe Coding + 核心手写`
 
 **⚙️ 后端架构**
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white) ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
 
 **🎨 前端 & 终端**
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Vue](https://img.shields.io/badge/Vue-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![Electron](https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=electron&logoColor=white)
-![小程序](https://img.shields.io/badge/小程序-H5/钉钉-6DE8A0?style=flat-square)
+
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Vue](https://img.shields.io/badge/Vue-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white) ![Electron](https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=electron&logoColor=white) ![小程序](https://img.shields.io/badge/%E5%B0%8F%E7%A8%8B%E5%BA%8F-H5/%E9%92%89%E9%92%89-6DE8A0?style=flat-square)
 
 **🔌 硬件 & 外设集成**
+
 `扫码枪 (pynput + WS)` `高拍仪 SDK 对接` `打印管理 / SumatraPDF` `多协议 (蓝牙/WiFi/网线)` `HIS 系统对接`
 
 **📊 数据 & 基础设施**
+
 `爬虫` `数据迁移` `SQLite` `MySQL` `Docker` `Linux 运维` `离线部署`
 
 ---
@@ -93,10 +86,6 @@
 
 <div align="center">
 
-<p>
-  <a href="mailto:black524726@163.com">📧 邮箱</a>　·
-  <a href="https://github.com/ii3lack">💻 GitHub</a>　·
-  <a href="https://ii3lack.github.io/ii3lack">🌐 在线简历</a>
-</p>
+📧 <a href="mailto:black524726@163.com">邮箱</a> · 💻 <a href="https://github.com/ii3lack">GitHub</a> · 🌐 <a href="https://ii3lack.github.io/ii3lack">在线简历</a>
 
 </div>
