@@ -43,4 +43,5 @@ next-env.d.ts
 .omc/
 tmp.md
 answer.txt
+resume-material.md
 bun.lock
