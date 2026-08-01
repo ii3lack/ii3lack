@@ -6,7 +6,7 @@
  */
 :root {
 	--color-paper: oklch(96% 0.008 80);
-	--color-paper-2: oklch(93% 0.010 80);
+	--color-paper-2: oklch(93% 0.01 80);
 	--color-paper-3: oklch(89% 0.012 80);
 	--color-rule: oklch(82% 0.012 80);
 	--color-rule-2: oklch(70% 0.012 80);
@@ -24,8 +24,7 @@
 	--font-body:
 		var(--font-body), "IBM Plex Sans", "PingFang SC", "Hiragino Sans GB",
 		"Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
-	--font-mono:
-		var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
+	--font-mono: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
 
 	--text-xs: 0.75rem;
 	--text-sm: 0.875rem;

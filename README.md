@@ -1,8 +1,8 @@
 <div align="center">
 
-<a href="https://ii3lack.github.io/ii3lack"><img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=28&duration=3000&pause=1000&color=4A90D9&center=true&vCenter=true&random=false&width=620&lines=%E4%BD%A0%E5%A5%BD%2C+%E6%88%91%E6%98%AF+Black+%F0%9F%91%8B;Functions+describe+the+world;AI+%E5%85%A8%E6%A0%88%E5%B7%A5%E7%A8%8B%E5%B8%88;Agent+%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%E8%80%85" alt="打字动画" /></a>
+<a href="https://ii3lack.github.io/ii3lack"><img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=28&duration=3000&pause=1000&color=4A90D9&center=true&vCenter=true&random=false&width=620&lines=%E4%BD%A0%E5%A5%BD%2C+%E6%88%91%E6%98%AF+Black+%F0%9F%91%8B;Functions+describe+the+world;AI+%E5%85%A8%E6%A0%88%E5%B7%A5%E7%A8%8B%E5%B8%88;%E4%BB%8E%E9%9C%80%E6%B1%82%E5%88%B0%E4%B8%8A%E7%BA%BF" alt="打字动画" /></a>
 
-### `AI 全栈工程师 · 杭州 · 4 年经验 · 目标：技术负责人 / Agent 应用开发 / AI 全栈工程师`
+### `AI 全栈工程师 · 杭州 · 4 年+ 经验 · 医疗信息化全栈交付`
 
 <a href="mailto:black524726@163.com"><img src="https://img.shields.io/badge/邮箱-black524726@163.com-4A90D9?style=for-the-badge&logo=gmail&logoColor=white" /></a> <a href="https://github.com/ii3lack"><img src="https://img.shields.io/badge/GitHub-ii3lack-181717?style=for-the-badge&logo=github&logoColor=white" /></a> <a href="https://ii3lack.github.io/ii3lack"><img src="https://img.shields.io/badge/在线简历-ii3lack.github.io-4A90D9?style=for-the-badge&logo=vercel&logoColor=white" /></a>
 
@@ -14,55 +14,72 @@
 
 ### 🎯 核心能力
 
-从物理外设集成到 Agent 核心代码，从 AI 工具链搭建到资源约束中交付。不出于对技术的偏好做决策，而是评估时间、风险、将模糊需求拆解为可落地的步骤。
+在无产品、无设计、无专职运维的环境下独立交付，在资源受限的团队里解决问题、上线为唯一标准。
 
-- **AI 工作流工程化** — 搭建 Claude Code / Pi + Superpowers（头脑风暴→TDD→Review）+ Codegraph（代码记忆）+ Chrome-MCP（前端调试）的工具链组合。用 vibe coding 快速落地设备 SDK 重构；核心 Agent 代码坚持手写。
-- **Agent 核心开发（手写）** — 从零实现 ReAct 循环、Event 事件流、session 持久化、tool calling 流式累积、路径沙箱。研读 pi-agent 源码，学习 SessionTreeEntry 的树形协议设计与 SessionStorage 协议接口。
-- **本地 SDK 架构与全栈交付** — Python FastAPI 模块化封装扫码枪、高拍仪、打印机、SQLite 持久化，中间件分层 + WS 心跳 + 配置热加载。前端 React+TypeScript，部署脚本全链路（安装→卸载→配置→启动→远程更新）。
-- **资源约束下的技术决策** — 4 人团队，在需求变动、时间压缩中协商功能取舍，推动多外部系统对接。不重复造轮子，透过现象看本质。
+- **全链路交付：从需求到上线** — 独立完成需求梳理 → 方案设计 → 开发 → 部署全流程。主导验光处方自动化系统，1 周从 0 上线温岭市第一人民医院：眼科开医嘱患者的检查数据全部经系统写入东华 HIS，医院原先不具备该能力。
+- **一套业务模型，多院点规模化落地** — 从 0 搭建公司数字化应用矩阵：70+ 移动 H5、10+ 院点定制数据大屏、10 个院点小程序、Electron 验光桌面端，覆盖 CRM、渠道订单、校园筛查、OA、营销等业务线。
+- **跨端全栈与医疗设备集成** — Web（Vue2 / Vue3 / React）、H5、小程序、Electron 桌面端全栈开发；后端 Python（FastAPI）/ PHP（ThinkPHP）/ Node.js。深度对接扫码枪、高拍仪、打印机、眼压计、电脑验光仪（Nidek / 目乐），打通设备数据采集到 HIS 的全链路。
+- **资源受限下的技术决策** — 4 人研发团队承接全公司数字化需求：排优先级、砍冗余、选成熟方案保证交付。AI 工具链作为工作方式加速落地（vibe coding 一周交付），核心代码坚持手写，不做过度设计。
 
 ---
 
 ### 🛠️ 技术栈
 
-> **🧠 Agent 工程**
->
-> `手写 ReAct 循环` `Session 持久化` `Tool Calling 流式累积` `Eval 评测设计` `MCP / Skills 工具链`
->
-> **🤖 AI 工作流**
->
-> `Claude Code / Pi` `Superpowers (Plan→Spec→TDD)` `Codegraph · Chrome-MCP` `Vibe Coding + 核心手写`
+**🎨 前端与终端**
 
-**⚙️ 后端架构**
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Vue](https://img.shields.io/badge/Vue-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white) ![Electron](https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=electron&logoColor=white) ![小程序](https://img.shields.io/badge/%E5%B0%8F%E7%A8%8B%E5%BA%8F-H5-6DE8A0?style=flat-square)
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white) ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
+**⚙️ 后端**
 
-**🎨 前端 & 终端**
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Vue](https://img.shields.io/badge/Vue-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white) ![Electron](https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=electron&logoColor=white) ![小程序](https://img.shields.io/badge/%E5%B0%8F%E7%A8%8B%E5%BA%8F-H5/%E9%92%89%E9%92%89-6DE8A0?style=flat-square)
+**🔌 设备与系统集成**
 
-**🔌 硬件 & 外设集成**
+`扫码枪 / 高拍仪 / 打印机` `眼压计 / Nidek / 目乐` `HIS 系统对接` `多协议（蓝牙 / WiFi / 串口）`
 
-`扫码枪 (pynput + WS)` `高拍仪 SDK 对接` `打印管理 / SumatraPDF` `多协议 (蓝牙/WiFi/网线)` `HIS 系统对接`
+**📊 数据与部署**
 
-**📊 数据 & 基础设施**
+`爬虫与数据同步` `MySQL / SQLite` `Docker` `Linux 运维` `内网离线部署`
 
-`爬虫` `数据迁移` `SQLite` `MySQL` `Docker` `Linux 运维` `离线部署`
+**🤖 AI 工程（进行中）**
+
+`手写 ReAct Agent` `Eval 评测体系` `Claude Code / Pi 工具链` `MCP / Skills`
 
 ---
 
 ### 💼 经历锚点
 
-- **杭州捍尔目科技集团** · 全栈开发工程师 · `2023.01 — 至今` — 主导数字化平台技术底座建设（CRM / 报表 / 财务 OA / 数据看板），数据报表覆盖全公司前后台业务部门。
-- **东方通信** · 终端软件工程师 · `2021.07 — 2022.12` — 两周交付低代码票据工具中标三峡银行；TypeScript 重构交行 JS-SDK 修复长期重连缺陷。
+- **杭州捍尔目科技集团** · 全栈开发工程师 · `2023.01 — 至今`
+  - 4 人研发团队核心开发，承担技术方案设计与技术方向推进，负责各院点落地对接与技术支持。
+  - 主导验光处方自动化系统：独立完成 Python FastAPI SDK（扫码枪 / 高拍仪 / 打印机 / 眼压计接入）+ React 前端 + 部署脚本，1 周从 0 上线温岭市第一人民医院，眼科开医嘱患者数据全部经系统写入东华 HIS，半年内将扩展至 3 个院点。
+  - 主导渠道订单数据平台：开发依视路 / 欧几里得 / Lucid / Orthok 四厂商订单对接与同步，覆盖公司 90% 渠道订单，替代人工核对。
+  - 接手存在缺陷的学生艺术展项目：重写 FastAPI 后端（20+ 接口，覆盖报名 / 评审 / 奖项 / 专家 / 导出），修复小程序问题，支撑约 300 名学生报名参展（覆盖浙江全省）。
+  - 独立负责邮储银行河南分行智能营销平台后台全部模块，完成与企业微信的对接。
+  - 前 AI 时代从 0 搭建公司数字化应用矩阵：70+ 移动 H5、10+ 院点数据大屏、10 个小程序、Electron 验光桌面端。
+- **东方通信股份有限公司（金融事业部）** · 终端软件工程师 · `2021.10 — 2022.12`
+  - 实习期（2021.10—2022.06）负责银行自助终端应用开发与中台前端；转正后（2022.06—2022.12）独立负责邮储银行河南项目业务后台。
+  - 主导银行设备通信 JS-SDK 的 TypeScript 重构：抽象读卡 / 身份证 / 摄像头 / 打印等设备模式与信道层，修复长期 WebSocket 重连缺陷，生产环境稳定运行。
+  - 主导票据可视化编辑器（Electron + React）设计与核心开发：canvas 画布编辑、素材库、表格与边框系统；离职后由同事迭代为工业级版本并中标三峡银行项目。
+
+---
+
+### 🚀 项目精选
+
+| 项目 | 技术栈 | 结果 |
+| ------ | -------- | ------ |
+| 验光处方自动化处理系统 | Python FastAPI · React · 设备集成 · HIS | 温岭市第一人民医院：眼科开医嘱患者数据全部经系统写入东华 HIS，1 周从 0 到上线 |
+| 渠道订单数据平台 | Python · 爬虫 · API 对接 | 对接依视路 / 欧几里得 / Lucid / Orthok 四厂商订单，覆盖公司 90% 渠道订单 |
+| 学生艺术展览征集系统 | Python FastAPI · 微信小程序 | 重写后端 20+ 接口，支撑约 300 名学生报名参展（覆盖浙江全省） |
+| 票据可视化编辑器 | Electron · React · TypeScript · canvas | 主导设计与核心开发；离职后由同事迭代，工业级版本中标三峡银行项目 |
+| 银行设备通信 JS-SDK | TypeScript · WebSocket · 设备抽象 | 抽象设备模式与信道层，修复长期重连缺陷，生产环境稳定运行 |
+| [蒙眼旅人 Blind Traveler](https://gitee.com/i3lack/blind_traveler) | Flutter · Dart | 盲人互助社交 App，获 NCDA 全国高校数字艺术设计大赛浙江省三等奖（交互设计组） |
 
 ---
 
 ### 🌱 正在探索
 
-- 🔬 **手写 Agent Core** — 从零实现 ReAct 循环 + session 持久化 + tool calling 累积 + 路径沙箱。研读 pi-agent 源码，学习 SessionTreeEntry 的树形协议设计，将 session 分为给 LLM 和不给 LLM 的，逐步向协议化抽象演进。
-- 📏 **Eval 驱动开发** — 为 Agent 系统设计可量化的评测体系，验证工具调用正确率与 session 恢复可靠性。
-- 🎨 **视觉创作 Agent 应用** — 计划在学习 Agent 架构模式后，基于成熟框架构建面向摄影/视觉创作领域的工业级生成式 Agent。
+- 🔬 **study-agent** — 从零手写 ReAct Agent：事件流驱动循环、session 持久化、文件工具沙箱、Eval 评测体系（45 个测试）。目的不是再造一个框架，而是把 Agent 框架的核心设计真正吃透。（进行中）
+- 🎨 **dry-light** — 计划在掌握 Agent 架构模式后，基于成熟框架构建面向摄影 / 视觉创作领域的生成式 Agent 应用。
 
 ---
 

@@ -6,85 +6,71 @@ import { useEffect, useState, useRef, useCallback } from "react";
 
 const CAPABILITIES: { title: string; desc: string }[] = [
 	{
-		title: "AI 工作流工程化",
-		desc: "在团队中搭建 Claude Code / Pi + Superpowers（头脑风暴→TDD→Review）+ Codegraph（代码记忆）+ Chrome-MCP（前端调试）的工具链组合。用 vibe coding 快速落地设备 SDK 重构并一周交付上线；核心 Agent 代码坚持手写，基础设施用 AI 加速。",
+		title: "全链路交付：从需求到上线",
+		desc: "在无产品、无设计、无专职运维的环境下，独立完成需求梳理 → 方案设计 → 开发 → 部署的全流程。主导验光处方自动化系统，1 周从 0 上线温岭市第一人民医院：眼科开医嘱患者的检查数据全部经系统写入东华 HIS，医院原先不具备该能力。",
 	},
 	{
-		title: "Agent 核心开发（手写）",
-		desc: "从零实现 ReAct 循环、Event 事件流（TurnStart → UserToken → ToolStart → ToolResult → TurnEnd → RunEnd）、session 持久化、tool calling 流式累积、路径沙箱。研读 pi-agent 源码，学习 SessionTreeEntry（Message / Compaction / BranchSummary / Custom 等十多种 entry）的树形协议设计，以及 SessionStorage 协议接口与具体存储实现解耦的架构思路。",
+		title: "一套业务模型，多院点规模化落地",
+		desc: "从 0 搭建公司数字化应用矩阵：70+ 移动 H5、10+ 院点定制数据大屏、10 个院点小程序、Electron 验光桌面端，覆盖 CRM、渠道订单、校园筛查、OA、营销等业务线。按院点需求快速定制复制交付，支撑连锁业务扩张。",
 	},
 	{
-		title: "本地 SDK 架构与全栈交付",
-		desc: "Python FastAPI 模块化封装扫码枪(pynput+WS)、高拍仪(SDK)、打印管理(SumatraPDF)、SQLite 持久化，中间件分层（ErrorHandler → RequestLogging → RequestID）+ WS 心跳 + 配置热加载。前端 React+TypeScript，对接 HIS 系统；部署脚本全链路（安装→卸载→配置→启动→远程更新）。",
+		title: "跨端全栈与医疗设备集成",
+		desc: "Web（Vue2 / Vue3 / React）、H5、小程序、Electron 桌面端全栈开发；后端 Python（FastAPI）/ PHP（ThinkPHP）/ Node.js。深度对接医疗外设：扫码枪、高拍仪、打印机、眼压计、电脑验光仪（Nidek / 目乐），打通设备数据采集到 HIS 的全链路。",
 	},
 	{
-		title: "资源约束下的技术决策",
-		desc: "4 人团队，在需求变动、时间压缩中与领导协商功能取舍（远程升级→砍掉确保交付），推动多外部系统对接。不出于对技术的偏好做决策，而是评估时间、风险、团队能力，将模糊需求拆解为可落地的步骤。",
+		title: "资源受限下的技术决策",
+		desc: "4 人研发团队承接全公司数字化需求：通过排优先级、砍冗余、选成熟方案保证交付。AI 工具链作为工作方式加速落地（vibe coding 一周交付），核心代码坚持手写。不做过度设计，以解决问题为唯一标准。",
 	},
 ];
 
 const SKILLS: { group: string; items: string[] }[] = [
 	{
-		group: "Agent 工程",
-		items: [
-			"手写 ReAct 循环",
-			"Session 持久化",
-			"Tool Calling 流式累积",
-			"Eval 评测设计",
-			"MCP / Skills 工具链",
-		],
-	},
-	{
-		group: "AI 工作流",
-		items: [
-			"Claude Code / Pi",
-			"Superpowers (Plan→Spec→TDD)",
-			"Codegraph · Chrome-MCP",
-			"Vibe Coding + 核心手写",
-			"AI-native 开发闭环",
-		],
-	},
-	{
-		group: "后端架构",
-		items: [
-			"Python / FastAPI",
-			"Node.js",
-			"PHP (ThinkPHP)",
-			"RESTful API 设计",
-			"WebSocket 服务",
-			"模块化 SDK 分层",
-		],
-	},
-	{
-		group: "前端 & 终端",
+		group: "前端与终端",
 		items: [
 			"React / TypeScript",
-			"Vue",
+			"Vue2 / Vue3",
 			"Next.js",
 			"Electron",
-			"钉钉小程序 / H5",
-			"跨端技术栈统一",
+			"微信小程序 / H5",
+			"数据大屏可视化",
 		],
 	},
 	{
-		group: "硬件 & 外设集成",
+		group: "后端",
 		items: [
-			"扫码枪 (pynput + WS)",
-			"高拍仪 SDK 对接",
-			"打印管理 / SumatraPDF",
-			"多协议 (蓝牙 / WiFi / 网线)",
+			"Python / FastAPI",
+			"PHP / ThinkPHP",
+			"Node.js",
+			"RESTful API",
+			"WebSocket 服务",
+		],
+	},
+	{
+		group: "设备与系统集成",
+		items: [
+			"扫码枪 / 高拍仪 / 打印机",
+			"眼压计 / Nidek / 目乐",
 			"HIS 系统对接",
+			"多协议（蓝牙 / WiFi / 串口）",
 		],
 	},
 	{
-		group: "数据 & 基础设施",
+		group: "数据与部署",
 		items: [
-			"爬虫",
-			"数据迁移",
-			"SQLite / MySQL",
+			"MySQL / SQLite",
+			"爬虫与数据同步",
 			"Docker",
 			"Linux 运维",
-			"离线部署脚本",
+			"内网离线部署",
+		],
+	},
+	{
+		group: "AI 工程（进行中）",
+		items: [
+			"手写 ReAct Agent",
+			"Eval 评测体系",
+			"Claude Code / Pi 工具链",
+			"MCP / Skills",
 		],
 	},
 ];
@@ -100,19 +86,22 @@ const EXPERIENCE: {
 		role: "全栈开发工程师",
 		period: "2023.01 — 至今",
 		points: [
-			"主导数字化平台技术底座建设：CRM、运营报表、财务 OA、数据看板。",
-			"整合钉钉审批流、ERP 残留数据、纸质文档等多源数据建统一数仓，报表覆盖全公司前后台业务部门。",
-			"主导前端与设备对接技术选型，统一 H5 / 钉钉小程序 / Electron 跨端技术栈。",
-			"带 2 人小团队，协调一线业务人员对齐内容与功能，把控各模块进度。",
+			"4 人研发团队核心开发，承担技术方案设计与技术方向推进，负责各院点落地对接与技术支持。",
+			"主导验光处方自动化系统：独立完成 Python FastAPI SDK（扫码枪 / 高拍仪 / 打印机 / 眼压计接入）+ React 前端 + 部署脚本，1 周从 0 上线温岭市第一人民医院，眼科开医嘱患者数据全部经系统写入东华 HIS，半年内将扩展至 3 个院点。",
+			"主导渠道订单数据平台：开发依视路 / 欧几里得 / Lucid / Orthok 四厂商订单对接与同步，覆盖公司 90% 渠道订单，替代人工核对。",
+			"接手存在缺陷的学生艺术展项目：重写 FastAPI 后端（20+ 接口，覆盖报名 / 评审 / 奖项 / 专家 / 导出），修复小程序问题，支撑约 300 名学生报名参展（覆盖浙江全省）。",
+			"独立负责邮储银行河南分行智能营销平台后台全部模块，完成与企业微信的对接。",
+			"前 AI 时代从 0 搭建公司数字化应用矩阵：70+ 移动 H5、10+ 院点数据大屏、10 个小程序、Electron 验光桌面端。",
 		],
 	},
 	{
-		company: "东方通信股份有限公司",
-		role: "终端软件工程师（金融事业部）",
-		period: "2021.07 — 2022.12",
+		company: "东方通信股份有限公司（金融事业部）",
+		role: "终端软件工程师",
+		period: "2021.10 — 2022.12",
 		points: [
-			"两周交付低代码票据可视化工具（React + Vite + 拖拽插件 + SSR），中标三峡银行项目。",
-			"TypeScript 全面重构河北交行智能设备通信 JS-SDK，修复长期重连缺陷，生产环境稳定运行。",
+			"实习期（2021.10—2022.06）负责银行自助终端应用开发与中台前端；转正后（2022.06—2022.12）独立负责邮储银行河南项目业务后台。",
+			"主导银行设备通信 JS-SDK 的 TypeScript 重构：抽象读卡 / 身份证 / 摄像头 / 打印等设备模式与信道层，修复长期 WebSocket 重连缺陷，生产环境稳定运行。",
+			"主导票据可视化编辑器（Electron + React）设计与核心开发：canvas 画布编辑、素材库、表格与边框系统；离职后由同事迭代为工业级版本并中标三峡银行项目。",
 		],
 	},
 ];
@@ -124,19 +113,34 @@ const PROJECTS: {
 	link?: string;
 }[] = [
 	{
-		name: "渠道数据采集与分析平台",
-		stack: ["Python", "浏览器自动化", "API 重放"],
-		result: "渠道数据报表与业务实际数据 90%+ 准确率。",
+		name: "验光处方自动化处理系统",
+		stack: ["Python FastAPI", "React", "设备集成", "HIS"],
+		result: "温岭市第一人民医院：眼科开医嘱患者数据全部经系统写入东华 HIS，1 周从 0 到上线。",
 	},
 	{
-		name: "院点检查数据建档系统",
-		stack: ["Python", "WebSocket", "多协议通信"],
-		result: "打通多种医疗设备，全流程数字化建档。",
+		name: "渠道订单数据平台",
+		stack: ["Python", "爬虫", "API 对接"],
+		result: "对接依视路 / 欧几里得 / Lucid / Orthok 四厂商订单，覆盖公司 90% 渠道订单。",
+	},
+	{
+		name: "学生艺术展览征集系统",
+		stack: ["Python FastAPI", "微信小程序"],
+		result: "重写后端 20+ 接口，支撑约 300 名学生报名参展（覆盖浙江全省）。",
+	},
+	{
+		name: "票据可视化编辑器",
+		stack: ["Electron", "React", "TypeScript", "canvas"],
+		result: "主导设计与核心开发；离职后由同事迭代，工业级版本中标三峡银行项目。",
+	},
+	{
+		name: "银行设备通信 JS-SDK",
+		stack: ["TypeScript", "WebSocket", "设备抽象"],
+		result: "抽象设备模式与信道层，修复长期重连缺陷，生产环境稳定运行。",
 	},
 	{
 		name: "蒙眼旅人 Blind Traveler",
 		stack: ["Flutter", "Dart"],
-		result: "获 NCDA 全国高校数字艺术设计大赛浙江省三等奖（交互设计组）。",
+		result: "盲人互助社交 App，获 NCDA 全国高校数字艺术设计大赛浙江省三等奖（交互设计组）。",
 		link: "https://gitee.com/i3lack/blind_traveler",
 	},
 ];
@@ -144,15 +148,17 @@ const PROJECTS: {
 const AWARDS: { title: string; year: string }[] = [
 	{ title: "浙江省政府奖学金", year: "2021.12" },
 	{ title: "浙江省第十六届大学生电子商务大赛 三等奖", year: "2021.06" },
-	{ title: "NCDA 全国高校数字艺术设计大赛 浙江省三等奖（交互设计组）", year: "2021.05" },
+	{
+		title: "NCDA 全国高校数字艺术设计大赛 浙江省三等奖（交互设计组）",
+		year: "2021.05",
+	},
 	{ title: "绍兴市大数据应用大赛 三等奖", year: "2020.09" },
 	{ title: "国家励志奖学金", year: "2019.12" },
 ];
 
 const EXPLORING: string[] = [
-	"手写 Agent Core — 从零实现 ReAct 循环 + session 持久化 + tool calling 累积 + 路径沙箱。研读 pi-agent 工业级源码，学习将 session 设计为 Entry+Leaf 指针管理的树形协议，逐步向协议化抽象演进。",
-	"Eval 驱动开发 — 为 Agent 系统设计可量化的评测体系，验证工具调用正确率与 session 恢复可靠性。",
-	"视觉创作 Agent 应用 — 计划在学习 Agent 架构模式后，基于成熟框架构建面向摄影/视觉创作领域的工业级生成式 Agent。",
+	"study-agent — 从零手写 ReAct Agent：事件流驱动循环、session 持久化、文件工具沙箱、Eval 评测体系（45 个测试）。目的不是再造一个框架，而是把 Agent 框架的核心设计真正吃透。（进行中）",
+	"dry-light — 计划在掌握 Agent 架构模式后，基于成熟框架构建面向摄影 / 视觉创作领域的生成式 Agent 应用。",
 ];
 
 const HOBBIES: string[] = ["🏀 篮球", "🖊️ 书法", "📷 摄影"];
@@ -184,7 +190,8 @@ function useScrollProgress() {
 
 		const update = () => {
 			const scrollTop = window.scrollY;
-			const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+			const docHeight =
+				document.documentElement.scrollHeight - window.innerHeight;
 			const progress = docHeight > 0 ? scrollTop / docHeight : 0;
 			bar.style.transform = `scaleX(${progress})`;
 		};
@@ -282,10 +289,7 @@ function Nav() {
 				<ul className="nav-masthead__links">
 					{NAV_LINKS.map(([id, label]) => (
 						<li key={id}>
-							<a
-								href={`#${id}`}
-								className={active === id ? "is-active" : ""}
-							>
+							<a href={`#${id}`} className={active === id ? "is-active" : ""}>
 								{label}
 							</a>
 						</li>
@@ -318,13 +322,13 @@ function Hero() {
 				className="hero__title reveal"
 				style={{ "--i": 2 } as React.CSSProperties}
 			>
-				AI 全栈工程师 · 杭州 · 4 年经验
+				AI 全栈工程师 · 杭州 · 4 年+ 经验
 			</h1>
 			<p
 				className="hero__sub reveal"
 				style={{ "--i": 3 } as React.CSSProperties}
 			>
-				目标：技术负责人 / Agent 应用开发 / AI 全栈工程师
+				4 年+ 医疗信息化全栈交付 · 从需求到上线
 			</p>
 			<a
 				className="hero__cta reveal"
@@ -355,11 +359,7 @@ function Strip() {
 				<p className="strip__label" style={{ marginTop: "var(--space-lg)" }}>
 					目标
 				</p>
-				<p className="strip__value">
-					技术负责人 / Agent 应用开发
-					<br />
-					AI 全栈工程师
-				</p>
+				<p className="strip__value">技术负责人</p>
 			</div>
 			<div className="strip__col">
 				<p className="strip__label">联系</p>

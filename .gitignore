@@ -40,3 +40,7 @@ next-env.d.ts
 
 # hallmark project memory (local only)
 /.hallmark/
+.omc/
+tmp.md
+answer.txt
+bun.lock
