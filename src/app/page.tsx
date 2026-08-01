@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 
 /* ---------- data ---------- */
 
@@ -89,7 +89,7 @@ const EXPERIENCE: {
 			"4 人研发团队核心开发，承担技术方案设计与技术方向推进，负责各院点落地对接与技术支持。",
 			"主导验光处方自动化系统：独立完成 Python FastAPI SDK（扫码枪 / 高拍仪 / 打印机 / 眼压计接入）+ React 前端 + 部署脚本，1 周从 0 上线温岭市第一人民医院，眼科开医嘱患者数据全部经系统写入东华 HIS，半年内将扩展至 3 个院点。",
 			"主导渠道订单数据平台：开发依视路 / 欧几里得 / Lucid / Orthok 四厂商订单对接与同步，覆盖公司 90% 渠道订单，替代人工核对。",
-			"接手存在缺陷的学生艺术展项目：重写 FastAPI 后端（20+ 接口，覆盖报名 / 评审 / 奖项 / 专家 / 导出），修复小程序问题，支撑约 300 名学生报名参展（覆盖浙江全省）。",
+			"接手存在缺陷的学生艺术展项目：负责管理后台与小程序前端开发（Taro / Vue3 / Element Plus），限期修复小程序关键问题，保障按期上线，支撑约 300 名学生报名参展（覆盖浙江全省）。",
 			"独立负责邮储银行河南分行智能营销平台后台全部模块，完成与企业微信的对接。",
 			"前 AI 时代从 0 搭建公司数字化应用矩阵：70+ 移动 H5、10+ 院点数据大屏、10 个小程序、Electron 验光桌面端。",
 		],
@@ -115,22 +115,25 @@ const PROJECTS: {
 	{
 		name: "验光处方自动化处理系统",
 		stack: ["Python FastAPI", "React", "设备集成", "HIS"],
-		result: "温岭市第一人民医院：眼科开医嘱患者数据全部经系统写入东华 HIS，1 周从 0 到上线。",
+		result:
+			"温岭市第一人民医院：眼科开医嘱患者数据全部经系统写入东华 HIS，1 周从 0 到上线。",
 	},
 	{
 		name: "渠道订单数据平台",
 		stack: ["Python", "爬虫", "API 对接"],
-		result: "对接依视路 / 欧几里得 / Lucid / Orthok 四厂商订单，覆盖公司 90% 渠道订单。",
+		result:
+			"对接依视路 / 欧几里得 / Lucid / Orthok 四厂商订单，覆盖公司 90% 渠道订单。",
 	},
 	{
 		name: "学生艺术展览征集系统",
-		stack: ["Python FastAPI", "微信小程序"],
-		result: "重写后端 20+ 接口，支撑约 300 名学生报名参展（覆盖浙江全省）。",
+		stack: ["Taro 小程序", "Vue3 管理后台"],
+		result: "负责小程序与管理后台开发，限期修复关键缺陷，支撑约 300 名学生报名参展（覆盖浙江全省）。",
 	},
 	{
 		name: "票据可视化编辑器",
 		stack: ["Electron", "React", "TypeScript", "canvas"],
-		result: "主导设计与核心开发；离职后由同事迭代，工业级版本中标三峡银行项目。",
+		result:
+			"主导设计与核心开发；离职后由同事迭代，工业级版本中标三峡银行项目。",
 	},
 	{
 		name: "银行设备通信 JS-SDK",
@@ -140,7 +143,8 @@ const PROJECTS: {
 	{
 		name: "蒙眼旅人 Blind Traveler",
 		stack: ["Flutter", "Dart"],
-		result: "盲人互助社交 App，获 NCDA 全国高校数字艺术设计大赛浙江省三等奖（交互设计组）。",
+		result:
+			"乌托邦概念社交 App（类 Soul），获 NCDA 全国高校数字艺术设计大赛浙江省三等奖（交互设计组）。",
 		link: "https://gitee.com/i3lack/blind_traveler",
 	},
 ];
