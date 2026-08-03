@@ -45,3 +45,7 @@ tmp.md
 answer.txt
 resume-material.md
 bun.lock
+.pi-subagents/
+
+# bigpowers specs (local docs — do not commit)
+specs/

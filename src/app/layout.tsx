@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import "./print.css";
 
 const display = Fraunces({
 	subsets: ["latin"],
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL("https://ii3lack.github.io/ii3lack"),
 	title: "Black · AI 全栈工程师",
 	description:
-		"Black — AI 全栈工程师，坐标杭州。4 年全栈，目标：技术负责人 / Agent 应用开发 / AI 全栈工程师。",
+		"Black — AI 全栈工程师，坐标杭州。4 年全栈医疗信息化交付，求职方向：AI 应用工程师 / AI 全栈工程师。",
 	keywords: [
 		"Black",
 		"AI 全栈工程师",
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Black · AI 全栈工程师",
 		description:
-			"AI 全栈工程师 · 杭州 · 4 年全栈 · 目标：技术负责人 / Agent 应用开发 / AI 全栈工程师",
+			"AI 全栈工程师 · 杭州 · 4 年全栈医疗信息化 · 求职意向：AI 应用工程师 / AI 全栈工程师",
 		type: "website",
 		url: "https://ii3lack.github.io/ii3lack",
 	},

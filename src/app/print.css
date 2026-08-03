@@ -1,0 +1,118 @@
+/* Resume V3 print — exactly 2 A4 pages
+ * Screen content (.shell) is hidden in print; a curated 2-page
+ * print resume (.print-resume) is shown instead.
+ * page 1: 题头/联系/关键数据/核心能力/技术栈/工作经历
+ * page 2: 项目精选（金字塔）+ 探索/教育/获奖
+ * goal: resume.pdf = 2 pages (verified by pypdf)
+ */
+@media print {
+	@page {
+		size: A4;
+		margin: 12mm 14mm;
+	}
+
+	html,
+	body {
+		background: #fff !important;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	/* hide interactive chrome + screen content */
+	.nav,
+	.nav__toggle,
+	.footer,
+	.shell {
+		display: none !important;
+	}
+
+	/* ---------- print resume ---------- */
+	.print-resume {
+		display: block;
+		font-family: "IBM Plex Sans", "PingFang SC", "Microsoft YaHei",
+			sans-serif;
+		font-size: 9.5pt;
+		line-height: 1.45;
+		color: #1a1a1a;
+	}
+
+	.pr__head {
+		border-bottom: 1.5pt solid #1a1a1a;
+		padding-bottom: 6pt;
+		margin-bottom: 8pt;
+	}
+	.pr__title {
+		font-family: "Fraunces", "Tiempos", Georgia, serif;
+		font-size: 17pt;
+		font-weight: 600;
+		line-height: 1.15;
+		margin: 0 0 3pt 0;
+	}
+	.pr__intent {
+		font-size: 10pt;
+		color: #14408c;
+		margin: 0 0 3pt 0;
+	}
+	.pr__contact {
+		font-size: 8.5pt;
+		color: #444;
+		margin: 0;
+	}
+
+	.pr__sec {
+		margin-bottom: 8pt;
+	}
+	.pr__h2 {
+		font-size: 11pt;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		margin: 0 0 3pt 0;
+		padding-bottom: 1.5pt;
+		border-bottom: 0.5pt solid #bbb;
+		color: #111;
+	}
+	.pr__stats {
+		margin: 0;
+		font-size: 10pt;
+		font-weight: 600;
+	}
+	.pr__item,
+	.pr__line,
+	.pr__proj {
+		margin: 0 0 3pt 0;
+	}
+	.pr__item {
+		padding-left: 0;
+	}
+	.pr__ul {
+		margin: 0 0 5pt 0;
+		padding-left: 14pt;
+	}
+	.pr__ul li {
+		margin-bottom: 1.5pt;
+	}
+	.pr__job {
+		font-weight: 700;
+		margin: 0 0 2pt 0;
+	}
+	.pr__proj--star {
+		background: #f0f4fa;
+		border-left: 2pt solid #14408c;
+		padding: 4pt 6pt;
+		margin-bottom: 4pt;
+	}
+
+	/* page 2 starts here */
+	.pr__sec--page2 {
+		break-before: page;
+	}
+
+	a {
+		color: inherit !important;
+		text-decoration: none !important;
+	}
+}
