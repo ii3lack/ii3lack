@@ -142,8 +142,7 @@ const PROJECTS: {
 	{
 		name: "渠道订单数据平台",
 		stack: ["React", "ThinkPHP", "Python", "API 对接"],
-		background:
-			"公司渠道订单依赖人工与多家厂商系统核对，效率低且易出错。",
+		background: "公司渠道订单依赖人工与多家厂商系统核对，效率低且易出错。",
 		approach:
 			"自研订单系统（React 前端 + ThinkPHP 后台 + Python 订单核心服务）：实现依视路（Odoo JSON-RPC + 验证码 OCR）、欧泰科（开放 API）、欧几里得 / Lucid（接口反代 + Excel 上传）四厂商订单对接，状态机回写全链路。",
 		result: "覆盖公司 90% 渠道订单，替代人工核对。",
@@ -167,7 +166,8 @@ const PROJECTS: {
 	{
 		name: "银行设备通信 JS-SDK",
 		stack: ["TypeScript", "WebSocket", "设备抽象"],
-		background: "银行自助终端设备（读卡 / 身份证 / 摄像头 / 打印）与页面层通信。",
+		background:
+			"银行自助终端设备（读卡 / 身份证 / 摄像头 / 打印）与页面层通信。",
 		approach:
 			"主导 TypeScript 重构：8 类设备配置驱动注册 + WebSocket 信道层（自动重连），统一设备事件协议。",
 		result: "修复长期 WebSocket 重连缺陷，生产环境稳定运行。",
@@ -287,9 +287,7 @@ function Hero() {
 		<header id="top" className="hero">
 			<p className="hero__quote">“Functions describe the world.”</p>
 			<h1 className="hero__title">AI 全栈工程师 · 杭州 · 4 年+ 经验</h1>
-			<p className="hero__intent">
-				求职意向：AI 应用工程师 / AI 全栈工程师
-			</p>
+			<p className="hero__intent">求职意向：AI 应用工程师 / AI 全栈工程师</p>
 			<p className="hero__sub">
 				4 年+ 医疗信息化全栈交付 · 从需求到上线 · 从设备到 HIS
 			</p>
@@ -375,7 +373,13 @@ function Section({
 	);
 }
 
-function Capability({ cap, index }: { cap: (typeof CAPABILITIES)[0]; index: number }) {
+function Capability({
+	cap,
+	index,
+}: {
+	cap: (typeof CAPABILITIES)[0];
+	index: number;
+}) {
 	return (
 		<article className="cap">
 			<div className="cap__head">
@@ -442,8 +446,8 @@ function PrintResume() {
 			<section className="pr__sec">
 				<h2 className="pr__h2">关键数据</h2>
 				<p className="pr__stats">
-					90% 渠道订单覆盖 · 1 周从 0 上线温岭 HIS · 70+ 移动 H5 交付 ·
-					300 学生报名参展
+					90% 渠道订单覆盖 · 1 周从 0 上线温岭 HIS · 70+ 移动 H5 交付 · 300
+					学生报名参展
 				</p>
 			</section>
 
@@ -455,14 +459,14 @@ function PrintResume() {
 					眼科开医嘱患者数据全部写入东华 HIS。
 				</p>
 				<p className="pr__item">
-					<strong>一套模型多院点落地</strong> — 从 0 搭建数字化应用矩阵：
-					70+ 移动 H5、10+ 大屏、10 小程序、Electron 验光桌面端，覆盖 CRM、
+					<strong>一套模型多院点落地</strong> — 从 0 搭建数字化应用矩阵： 70+
+					移动 H5、10+ 大屏、10 小程序、Electron 验光桌面端，覆盖 CRM、
 					渠道订单、校园筛查、OA、营销。
 				</p>
 				<p className="pr__item">
 					<strong>跨端全栈与设备集成</strong> — Web/H5/小程序/Electron
-					全栈；后端 Python（FastAPI）/ PHP（ThinkPHP）/ Node.js；深度对接
-					Nidek / 目乐、眼压计、扫码枪、高拍仪、打印机，打通设备采集→处方
+					全栈；后端 Python（FastAPI）/ PHP（ThinkPHP）/ Node.js；深度对接 Nidek
+					/ 目乐、眼压计、扫码枪、高拍仪、打印机，打通设备采集→处方
 					PDF→静默打印→上传 HIS 全链路。
 				</p>
 				<p className="pr__item">
@@ -479,8 +483,7 @@ function PrintResume() {
 					小程序/H5 · 数据大屏
 				</p>
 				<p className="pr__line">
-					后端：Python/FastAPI · PHP/ThinkPHP · Node.js · RESTful ·
-					WebSocket
+					后端：Python/FastAPI · PHP/ThinkPHP · Node.js · RESTful · WebSocket
 				</p>
 				<p className="pr__line">
 					设备集成：扫码枪/高拍仪/打印机 · 眼压计/Nidek/目乐 · HIS 对接 ·
@@ -490,8 +493,8 @@ function PrintResume() {
 					数据部署：MySQL/SQLite · 爬虫 · Docker · Linux · 内网离线部署
 				</p>
 				<p className="pr__line">
-					AI 工程：手写 ReAct Agent · Eval 评测 · Claude Code / Pi 工具链 ·
-					MCP / Skills
+					AI 工程：手写 ReAct Agent · Eval 评测 · Claude Code / Pi 工具链 · MCP
+					/ Skills
 				</p>
 			</section>
 
@@ -501,15 +504,17 @@ function PrintResume() {
 					杭州捍尔目科技集团 · 全栈开发工程师 · 2023.01 — 至今
 				</p>
 				<ul className="pr__ul">
-					<li>4 人研发团队核心开发：技术方案设计与技术方向推进，院点落地对接。</li>
 					<li>
-						从 0 搭建数字化应用矩阵：70+ 移动 H5、10+ 大屏、10 小程序、
-						Electron 桌面端。
+						4 人研发团队核心开发：技术方案设计与技术方向推进，院点落地对接。
+					</li>
+					<li>
+						从 0 搭建数字化应用矩阵：70+ 移动 H5、10+ 大屏、10 小程序、 Electron
+						桌面端。
 					</li>
 				</ul>
 				<p className="pr__job">
-					东方通信（金融事业部）· 终端软件工程师 · 2021.10 — 2022.12
-					（实习 → 转正）
+					东方通信（金融事业部）· 终端软件工程师 · 2021.10 — 2022.12 （实习 →
+					转正）
 				</p>
 				<ul className="pr__ul">
 					<li>转正期独立负责邮储银行河南分行项目业务后台全部模块。</li>
@@ -523,7 +528,8 @@ function PrintResume() {
 				<h2 className="pr__h2">项目精选</h2>
 				<p className="pr__proj pr__proj--star">
 					<strong>验光处方自动化处理系统</strong>
-					（Python FastAPI · React · 设备集成 · HIS）<br />
+					（Python FastAPI · React · 设备集成 · HIS）
+					<br />
 					背景：医院原先不具备把眼科检查数据自动写入 HIS 的能力。做法：独立完成
 					设备接入 SDK（扫码枪/高拍仪/打印机/眼压计/Nidek、目乐）+ React 前端，
 					处方 PDF 生成→静默打印→经院内 SOAP WebService 写入东华 HIS，内网离线
@@ -533,8 +539,8 @@ function PrintResume() {
 				<p className="pr__proj">
 					<strong>渠道订单数据平台</strong>（React · ThinkPHP · Python）—
 					自研订单系统，依视路（Odoo JSON-RPC + 验证码 OCR）、欧泰科（开放
-					API）、欧几里得 / Lucid（接口反代 + Excel 上传）四厂商对接，覆盖
-					公司 90% 渠道订单，替代人工核对。
+					API）、欧几里得 / Lucid（接口反代 + Excel 上传）四厂商对接，覆盖 公司
+					90% 渠道订单，替代人工核对。
 				</p>
 				<p className="pr__proj">
 					<strong>学生艺术展览征集系统</strong>（Taro 小程序 · Vue3 · FastAPI）
@@ -546,9 +552,8 @@ function PrintResume() {
 					主导设计与核心开发；离职后由同事迭代为工业级版本并中标。
 				</p>
 				<p className="pr__proj">
-					<strong>银行设备通信 JS-SDK</strong>（TypeScript · WebSocket）—
-					8 类设备配置驱动注册 + 信道层自动重连，修复长期重连缺陷，生产稳定
-					运行。
+					<strong>银行设备通信 JS-SDK</strong>（TypeScript · WebSocket）— 8
+					类设备配置驱动注册 + 信道层自动重连，修复长期重连缺陷，生产稳定 运行。
 				</p>
 				<p className="pr__proj">
 					<strong>蒙眼旅人 Blind Traveler</strong>（Flutter · Dart）—

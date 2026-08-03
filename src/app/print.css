@@ -3,6 +3,7 @@
  * print resume (.print-resume) is shown instead.
  * page 1: 题头/联系/关键数据/核心能力/技术栈/工作经历
  * page 2: 项目精选（金字塔）+ 探索/教育/获奖
+ * Colors/fonts reference the locked warm-paper tokens (globals.css :root).
  * goal: resume.pdf = 2 pages (verified by pypdf)
  */
 @media print {
@@ -13,7 +14,7 @@
 
 	html,
 	body {
-		background: #fff !important;
+		background: var(--color-paper) !important;
 		-webkit-print-color-adjust: exact;
 		print-color-adjust: exact;
 	}
@@ -33,20 +34,19 @@
 	/* ---------- print resume ---------- */
 	.print-resume {
 		display: block;
-		font-family: "IBM Plex Sans", "PingFang SC", "Microsoft YaHei",
-			sans-serif;
+		font-family: var(--font-body);
 		font-size: 9.5pt;
 		line-height: 1.45;
-		color: #1a1a1a;
+		color: var(--color-ink);
 	}
 
 	.pr__head {
-		border-bottom: 1.5pt solid #1a1a1a;
+		border-bottom: 1.5pt solid var(--color-ink);
 		padding-bottom: 6pt;
 		margin-bottom: 8pt;
 	}
 	.pr__title {
-		font-family: "Fraunces", "Tiempos", Georgia, serif;
+		font-family: var(--font-display);
 		font-size: 17pt;
 		font-weight: 600;
 		line-height: 1.15;
@@ -54,12 +54,12 @@
 	}
 	.pr__intent {
 		font-size: 10pt;
-		color: #14408c;
+		color: var(--color-accent-ink);
 		margin: 0 0 3pt 0;
 	}
 	.pr__contact {
 		font-size: 8.5pt;
-		color: #444;
+		color: var(--color-neutral);
 		margin: 0;
 	}
 
@@ -72,8 +72,8 @@
 		letter-spacing: 0.02em;
 		margin: 0 0 3pt 0;
 		padding-bottom: 1.5pt;
-		border-bottom: 0.5pt solid #bbb;
-		color: #111;
+		border-bottom: 0.5pt solid var(--color-rule-2);
+		color: var(--color-ink);
 	}
 	.pr__stats {
 		margin: 0;
@@ -100,8 +100,7 @@
 		margin: 0 0 2pt 0;
 	}
 	.pr__proj--star {
-		background: #f0f4fa;
-		border-left: 2pt solid #14408c;
+		background: var(--color-accent-soft);
 		padding: 4pt 6pt;
 		margin-bottom: 4pt;
 	}
