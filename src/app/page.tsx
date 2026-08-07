@@ -185,7 +185,7 @@ function Hero() {
 			</Reveal>
 			<Reveal delay={0.16}>
 				<p className="hero__intent">
-					求职意向：Agent应用工程师
+					求职意向：Agent应用工程师 / AI全栈工程师
 				</p>
 			</Reveal>
 			<Reveal delay={0.24}>

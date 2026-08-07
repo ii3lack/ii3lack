@@ -21,7 +21,7 @@ export const CAPABILITIES: { title: string; desc: string }[] = [
 	},
 	{
 		title: "AI 工作流搭建与落地",
-		desc: "搭建 hermes / claude code / pi 与 matt pocock skills 规划开发，chrome devtools / codegraph 等 MCP 辅助；AI 驱动交付加速（vibe coding），核心设计 / 架构 / 业务建模始终由我主导。",
+		desc: "Agent 工具链 + 多会话规划驱动开发，从模糊需求到结构化执行，覆盖开发全链路。核心设计 / 架构 / 业务建模始终由我主导。",
 	},
 ];
 
@@ -76,7 +76,11 @@ export const SKILLS: { group: string; items: string[] }[] = [
 	},
 	{
 		group: "AI 工作流",
-		items: ["Claude Code / Pi / Hermes", "MCP / Skills"],
+		items: [
+			"Claude Code / Pi / Hermes",
+			"多会话规划驱动开发（Grill → Spec → Ticket → TDD）",
+			"从模糊需求到结构化执行，覆盖开发全链路",
+		],
 	},
 ];
 
