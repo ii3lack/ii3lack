@@ -1,7 +1,7 @@
 # CONTEXT — ii3lack 简历站点领域词表
 
 > 由 improve-codebase-architecture / domain-modeling 维护。
-> **唯一内容基准：README.md**——站点展示与 PDF 打印版必须与 README 逐字一致；改内容先改 README，再同步站点。
+> **唯一内容基准：README.md**——站点展示必须与 README 逐字一致；改内容先改 README，再同步站点。
 
 ## 领域词（简历域）
 
@@ -16,13 +16,12 @@
 
 ## 架构词（/codebase-design 词汇）
 
-- **数据层**（`page.tsx` 顶部常量）：唯一内容层，站点组件与 PrintResume 的共同来源。
-- **PrintResume 投影层**：2 页 A4 打印视图 = 数据层的纯投影——消费同一批常量，不再硬编码内容；只保留少量打印重塑（`items.join(" · ")`、获奖行压缩）。改内容只改常量，两端自动同步。
-- **EDUCATION 常量**：教育信息唯一来源（Home 获奖区 + PrintResume 共同消费）。
+- **数据层**（`page.tsx` 顶部常量）：唯一内容层，站点组件的共同来源。
+- **EDUCATION 常量**：教育信息唯一来源。
 
 ## 已知决策
 
 - spec 的"不加新数据文件"决策已重开（2026-08-07）：数据层现为独立模块 `src/app/resume-data.ts`（仍是单一数据层，README 为唯一内容基准）；`page.tsx` 只负责渲染。
 - 字体已自托管（`@fontsource/fraunces` + `ibm-plex-sans` + `jetbrains-mono`），构建零网络拉取（解决 Google Fonts 离线超时）。
-- 打印版文本允许与屏幕略有差异（用户："不管 PDF 打印"）；"恰好 2 页 A4" 不变量未复核。
+
 - 包管理器已从 pnpm 迁到 bun（2026-08-07）：本地与 CI 均为 `bun install --frozen-lockfile` + `bun run build`；`bun.lock` 为唯一锁文件。

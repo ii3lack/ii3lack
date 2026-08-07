@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import Lenis from "lenis";
 
@@ -89,7 +89,7 @@ function Reveal({
 	return (
 		<motion.div
 			className={className}
-			initial={{ opacity: 0, y: 26 }}
+			initial={{ opacity: 0, y: 20 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, margin: "-72px" }}
 			transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
@@ -328,96 +328,6 @@ function Project({ proj }: { proj: (typeof PROJECTS)[0] }) {
 	);
 }
 
-/* ---------- print-only curated resume (2 A4 pages) ---------- */
-
-function PrintResume() {
-	return (
-		<div className="print-resume">
-			<header className="pr__head">
-				<p className="pr__title">
-					Black · AI 全栈工程师 · 杭州 · 近 5 年 · 医疗信息化交付 + AI 应用探索
-				</p>
-				<p className="pr__intent">求职意向：AI 应用工程师 / AI 全栈工程师</p>
-				<p className="pr__contact">
-					邮箱 black524726@163.com · GitHub github.com/ii3lack · 在线简历
-					ii3lack.github.io/ii3lack
-				</p>
-			</header>
-
-			<section className="pr__sec">
-				<h2 className="pr__h2">核心能力</h2>
-				{CAPABILITIES.map((cap) => (
-					<p key={cap.title} className="pr__item">
-						<strong>{cap.title}</strong> — {cap.desc}
-					</p>
-				))}
-			</section>
-
-			<section className="pr__sec">
-				<h2 className="pr__h2">技术栈</h2>
-				{SKILLS.map((group) => (
-					<p key={group.group} className="pr__line">
-						{group.group}：{group.items.join(" · ")}
-					</p>
-				))}
-			</section>
-
-			<section className="pr__sec">
-				<h2 className="pr__h2">工作经历</h2>
-				{EXPERIENCE.map((job) => (
-					<Fragment key={job.company}>
-						<p className="pr__job">
-							{job.company} · {job.role} · {job.period}
-						</p>
-						<ul className="pr__ul">
-							{job.points.map((point, idx) => (
-								<li key={idx}>{point}</li>
-							))}
-						</ul>
-					</Fragment>
-				))}
-			</section>
-
-			<section className="pr__sec pr__sec--page2">
-				<h2 className="pr__h2">项目精选</h2>
-				{PROJECTS.map((proj) => (
-					<p
-						key={proj.name}
-						className={`pr__proj ${proj.featured ? "pr__proj--star" : ""}`}
-					>
-						<strong>{proj.name}</strong>（{proj.stack.join(" · ")}）
-						<br />
-						{proj.subtitle}
-						<br />
-						背景：{proj.background}
-						<br />
-						做法：{proj.approach}
-						<br />
-						结果：{proj.result}
-						<br />
-						角色：{proj.role}
-					</p>
-				))}
-			</section>
-
-			<section className="pr__sec">
-				<h2 className="pr__h2">探索 · 教育 · 获奖</h2>
-				<p className="pr__line">AI 应用探索：{EXPLORING[0]}</p>
-				<p className="pr__line">{EXPLORING[1]}</p>
-				<p className="pr__line">
-					{EDUCATION.school} · {EDUCATION.major} · {EDUCATION.period} ·{" "}
-					{EDUCATION.location}
-				</p>
-				<p className="pr__line">
-					{AWARDS.map((a) =>
-						a.note ? `${a.title} — ${a.note.replace(/。$/, "")}` : a.title,
-					).join(" · ")}
-				</p>
-			</section>
-		</div>
-	);
-}
-
 /* ---------- page ---------- */
 
 export default function Home() {
@@ -554,7 +464,6 @@ export default function Home() {
 				</div>
 			</footer>
 
-			<PrintResume />
-		</>
+			</>
 	);
 }

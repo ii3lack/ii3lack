@@ -13,7 +13,6 @@ import "@fontsource/jetbrains-mono/500.css";
 import "@fontsource/jetbrains-mono/600.css";
 import "@fontsource/jetbrains-mono/700.css";
 import "./globals.css";
-import "./print.css";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://ii3lack.github.io/ii3lack"),
