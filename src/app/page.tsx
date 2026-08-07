@@ -1,11 +1,14 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useState } from "react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import Lenis from "lenis";
 
 /* ============================================================
- * Resume V3 — hallmark Long Document macrostructure
- * theme: warm-paper locked system (tokens.css)
- * nav: N9 edge-aligned minimal · footer: Ft4 dense colophon
+ * Resume V4 — Long Document macrostructure · dark-tech theme
+ * theme: deep blue-black + indigo→violet accent (restrained)
+ * motion: Lenis smooth scroll + framer-motion reveals (medium)
+ * nav: glass edge-aligned minimal · footer: dense colophon
  * data source of truth: ./resume-data.ts (site / README / PDF same source)
  * ============================================================ */
 
@@ -44,7 +47,67 @@ function useActiveNav() {
 	return active;
 }
 
+/* ---------- Lenis smooth scroll (wheel-only; touch stays native) ---------- */
+function useSmoothScroll() {
+	const reduced = useReducedMotion();
+
+	useEffect(() => {
+		if (reduced) return;
+		const lenis = new Lenis({
+			autoRaf: true,
+			anchors: { offset: 88 },
+			smoothWheel: true,
+			lerp: 0.12,
+		});
+		return () => lenis.destroy();
+	}, [reduced]);
+}
+
 /* ---------- components ---------- */
+
+/* No-JS-safe reveal: static export renders a plain div; motion mounts after paint. */
+function Reveal({
+	children,
+	className,
+	delay = 0,
+}: {
+	children: React.ReactNode;
+	className?: string;
+	delay?: number;
+}) {
+	const reduced = useReducedMotion();
+	const [mounted, setMounted] = useState(false);
+
+	useLayoutEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!mounted || reduced) {
+		return <div className={className}>{children}</div>;
+	}
+
+	return (
+		<motion.div
+			className={className}
+			initial={{ opacity: 0, y: 26 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, margin: "-72px" }}
+			transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+		>
+			{children}
+		</motion.div>
+	);
+}
+
+function ScrollProgress() {
+	const { scrollYProgress } = useScroll();
+	const scaleX = useSpring(scrollYProgress, {
+		stiffness: 140,
+		damping: 28,
+		mass: 0.3,
+	});
+	return <motion.div className="scroll-progress" style={{ scaleX }} />;
+}
 
 const NAV_LINKS: [string, string][] = [
 	["capabilities", "能力"],
@@ -58,9 +121,20 @@ const NAV_LINKS: [string, string][] = [
 function Nav() {
 	const active = useActiveNav();
 	const [open, setOpen] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+
+	useEffect(() => {
+		const onScroll = () => setScrolled(window.scrollY > 10);
+		onScroll();
+		window.addEventListener("scroll", onScroll, { passive: true });
+		return () => window.removeEventListener("scroll", onScroll);
+	}, []);
 
 	return (
-		<nav className="nav" aria-label="Primary">
+		<nav
+			className={`nav${scrolled ? " nav--scrolled" : ""}`}
+			aria-label="Primary"
+		>
 			<div className="nav__inner">
 				<a className="nav__wordmark" href="#top" onClick={() => setOpen(false)}>
 					BLACK
@@ -99,14 +173,26 @@ function Nav() {
 function Hero() {
 	return (
 		<header id="top" className="hero">
-			<p className="hero__quote">“Functions describe the world.”</p>
-			<h1 className="hero__title">
-				AI 全栈工程师 · 杭州 · 近 5 年 · 医疗信息化交付 + AI 应用探索
-			</h1>
-			<p className="hero__intent">求职意向：AI 应用工程师 / AI 全栈工程师</p>
-			<p className="hero__sub">
-				医疗信息化交付 + AI 应用探索 · 从需求到上线 · 从设备到 HIS
-			</p>
+			<div className="hero__orb hero__orb--a" aria-hidden="true" />
+			<div className="hero__orb hero__orb--b" aria-hidden="true" />
+			<Reveal>
+				<p className="hero__quote">“Functions describe the world.”</p>
+			</Reveal>
+			<Reveal delay={0.08}>
+				<h1 className="hero__title">
+					AI 全栈工程师 · 杭州 · 近 5 年 · 医疗信息化交付 + AI 应用探索
+				</h1>
+			</Reveal>
+			<Reveal delay={0.16}>
+				<p className="hero__intent">
+					求职意向：AI 应用工程师 / AI 全栈工程师
+				</p>
+			</Reveal>
+			<Reveal delay={0.24}>
+				<p className="hero__sub">
+					医疗信息化交付 + AI 应用探索 · 从需求到上线 · 从设备到 HIS
+				</p>
+			</Reveal>
 		</header>
 	);
 }
@@ -163,15 +249,19 @@ function Section({
 	id,
 	title,
 	children,
+	bodyClass = "",
 }: {
 	id?: string;
 	title: string;
 	children: React.ReactNode;
+	bodyClass?: string;
 }) {
 	return (
 		<section id={id} className="section">
 			<h2 className="section__title">{title}</h2>
-			<div className="section__body">{children}</div>
+			<Reveal className={`section__body${bodyClass ? ` ${bodyClass}` : ""}`}>
+				{children}
+			</Reveal>
 		</section>
 	);
 }
@@ -332,22 +422,30 @@ function PrintResume() {
 
 export default function Home() {
 	useActiveNav();
+	useSmoothScroll();
 	const hobbies = HOBBIES.map((h) => h.label).join(" · ");
 
 	return (
 		<>
+			<ScrollProgress />
 			<Nav />
 			<div className="shell">
 				<Hero />
-				<Strip />
+				<Reveal>
+					<Strip />
+				</Reveal>
 
-				<Section id="capabilities" title="核心能力">
+				<Section
+					id="capabilities"
+					title="核心能力"
+					bodyClass="section__body--grid"
+				>
 					{CAPABILITIES.map((c, idx) => (
 						<Capability key={c.title} cap={c} index={idx} />
 					))}
 				</Section>
 
-				<Section id="stack" title="技术栈">
+				<Section id="stack" title="技术栈" bodyClass="section__body--wide">
 					{SKILLS.map((s) => (
 						<div key={s.group} className="sgroup">
 							<p className="sgroup__label">{s.group}</p>
@@ -379,7 +477,11 @@ export default function Home() {
 					</div>
 				</Section>
 
-				<Section id="projects" title="项目精选">
+				<Section
+					id="projects"
+					title="项目精选"
+					bodyClass="section__body--wide"
+				>
 					<div className="projects">
 						{PROJECTS.map((p) => (
 							<Project key={p.name} proj={p} />

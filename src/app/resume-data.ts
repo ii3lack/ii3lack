@@ -1,5 +1,5 @@
 /* ============================================================
- * Resume V3 数据层 — 唯一内容层 (deep module)
+ * Resume V4 数据层 — 唯一内容层 (deep module)
  * 唯一内容基准: README.md — 站点展示与 PDF 打印版必须与 README 逐字一致
  * 消费方: page.tsx（站点组件 + PrintResume 投影层）
  * 约束: 改内容先改 README，再同步此文件
