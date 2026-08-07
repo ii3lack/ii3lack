@@ -574,6 +574,12 @@ button:active {
 	color: var(--color-muted);
 	margin: 0 0 var(--space-md) 0;
 }
+.proj__sub {
+	font-size: var(--text-sm);
+	line-height: var(--lh-snug);
+	color: var(--color-muted);
+	margin: 0 0 var(--space-md) 0;
+}
 .proj__row {
 	display: grid;
 	grid-template-columns: 4ch 1fr;

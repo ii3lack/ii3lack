@@ -26,23 +26,24 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://ii3lack.github.io/ii3lack"),
-	title: "Black · AI 全栈工程师",
+	title: "Black · AI 全栈工程师 · 杭州 · 近 5 年 · 医疗信息化交付 + AI 应用探索",
 	description:
-		"Black — AI 全栈工程师，坐标杭州。4 年全栈医疗信息化交付，求职方向：AI 应用工程师 / AI 全栈工程师。",
+		"Black — AI 全栈工程师，坐标杭州。近 5 年医疗信息化交付 + AI 应用探索，求职方向：AI 应用工程师 / AI 全栈工程师。",
 	keywords: [
 		"Black",
 		"AI 全栈工程师",
 		"Python",
 		"TypeScript",
+		"Flutter",
 		"Agent",
 		"杭州",
 		"全栈工程师",
 	],
 	authors: [{ name: "Black", url: "https://github.com/ii3lack" }],
 	openGraph: {
-		title: "Black · AI 全栈工程师",
+		title: "Black · AI 全栈工程师 · 杭州 · 近 5 年 · 医疗信息化交付 + AI 应用探索",
 		description:
-			"AI 全栈工程师 · 杭州 · 4 年全栈医疗信息化 · 求职意向：AI 应用工程师 / AI 全栈工程师",
+			"AI 全栈工程师 · 杭州 · 近 5 年 · 医疗信息化交付 + AI 应用探索 · 求职意向：AI 应用工程师 / AI 全栈工程师",
 		type: "website",
 		url: "https://ii3lack.github.io/ii3lack",
 	},
