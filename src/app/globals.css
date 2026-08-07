@@ -337,33 +337,6 @@ button:active {
 	color: var(--color-ink);
 }
 
-/* ---------- Stats (number strip) ---------- */
-.stats {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: var(--space-lg);
-	margin-bottom: var(--section-gap);
-	padding-bottom: var(--space-2xl);
-	border-bottom: var(--rule-fine) solid var(--color-rule);
-}
-.stat__value {
-	font-family: var(--font-display);
-	font-weight: 300;
-	font-size: var(--text-3xl);
-	line-height: 1.1;
-	color: var(--color-ink);
-	margin: 0 0 var(--space-2xs) 0;
-	font-variant-numeric: tabular-nums;
-}
-.stat__label {
-	font-family: var(--font-mono);
-	font-size: var(--text-xs);
-	text-transform: uppercase;
-	letter-spacing: var(--tracking-label);
-	color: var(--color-muted);
-	margin: 0;
-}
-
 /* ---------- Section (Long Document inline heads) ---------- */
 .section {
 	margin-bottom: var(--section-gap);
@@ -409,15 +382,6 @@ button:active {
 	line-height: var(--lh-snug);
 	color: var(--color-ink);
 	margin: 0 0 var(--space-2xs) 0;
-}
-.cap__data {
-	font-family: var(--font-mono);
-	font-size: var(--text-xs);
-	text-transform: uppercase;
-	letter-spacing: var(--tracking-label);
-	color: var(--color-muted);
-	margin: 0 0 var(--space-sm) 0;
-	font-variant-numeric: tabular-nums;
 }
 .cap__desc {
 	font-family: var(--font-body);
@@ -603,16 +567,6 @@ button:active {
 }
 
 /* ---------- Exploring ---------- */
-.bridge {
-	font-family: var(--font-body);
-	font-size: var(--text-base);
-	line-height: var(--lh-relaxed);
-	color: var(--color-ink);
-	background: var(--color-accent-soft);
-	padding: var(--space-md) var(--space-lg);
-	margin: 0 0 var(--space-lg) 0;
-	max-width: 70ch;
-}
 .xitem {
 	font-family: var(--font-body);
 	font-size: var(--text-base);
@@ -766,13 +720,6 @@ button:active {
 	.strip {
 		grid-template-columns: 1fr;
 		gap: var(--space-xl);
-	}
-	.stats {
-		grid-template-columns: repeat(2, 1fr);
-		gap: var(--space-lg);
-	}
-	.stat__value {
-		font-size: var(--text-2xl);
 	}
 	.section__title {
 		font-size: var(--text-xl);

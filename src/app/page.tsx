@@ -235,7 +235,11 @@ const EDUCATION: {
 	location: "浙江绍兴",
 };
 
-const HOBBIES: string[] = ["🏀 篮球", "🖊️ 书法", "📷 摄影"];
+const HOBBIES: { icon: string; label: string }[] = [
+	{ icon: "🏀", label: "篮球" },
+	{ icon: "🖊️", label: "书法" },
+	{ icon: "📷", label: "摄影" },
+];
 
 /* ---------- hooks ---------- */
 
@@ -550,7 +554,7 @@ function PrintResume() {
 
 export default function Home() {
 	useActiveNav();
-	const hobbies = HOBBIES.map((h) => h.split(" ").slice(1).join(" ")).join(
+	const hobbies = HOBBIES.map((h) => h.label).join(
 		" · ",
 	);
 
