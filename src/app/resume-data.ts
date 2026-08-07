@@ -121,7 +121,7 @@ export const PROJECTS: {
 	link?: string;
 }[] = [
 	{
-		name: "验光处方自动化处理系统 (HDDU)",
+		name: "捍尔目眼科运营平台 (HDDU)",
 		subtitle: "捍尔目眼科运营系统核心模块",
 		stack: [
 			"Python FastAPI",
@@ -190,7 +190,7 @@ export const PROJECTS: {
 	{
 		name: "蒙眼旅人 Blind Traveler",
 		subtitle: "乌托邦主题社交 App 原型（大学时期）",
-		stack: ["Flutter", "Dart", "get"],
+		stack: ["Flutter", "Dart", "GetX"],
 		background:
 			'小组讨论确立"乌托邦社交"理念，参加 NCDA 全国高校数字艺术设计大赛。',
 		approach:
@@ -203,7 +203,7 @@ export const PROJECTS: {
 
 export const EXPLORING: string[] = [
 	"study-agent — 从零手写 ReAct Agent（Python）：事件流驱动循环 + session 持久化 + 文件工具沙箱 + Langfuse Eval 体系，45 个 pytest 用例。目的不是再造框架，而是吃透 Agent 框架核心设计。（进行中）",
-	"AI 工作流：hermes / claude code / pi 等 Agent 使用；matt pocock skills 等 skills 接入日常开发工作流和办公工作流；chrome devtools / codegraph 等 MCP 辅助。",
+	"AI 工作流：hermes / claude code / pi 等 Agent 使用；matt pocock skills / superpowers / oh my claudecode 等 skills 接入日常开发工作流和办公工作流；chrome devtools / codegraph 等 MCP 辅助；持续关注 GitHub 热门项目，筛选可用工具，思考 Agent 落地方案。",
 ];
 
 export const AWARDS: { title: string; year: string; note?: string }[] = [
