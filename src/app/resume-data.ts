@@ -78,6 +78,7 @@ export const SKILLS: { group: string; items: string[] }[] = [
 		group: "AI 工作流",
 		items: [
 			"Claude Code / Pi / Hermes",
+			"Skills / MCP 工具链",
 			"多会话规划驱动开发（Grill → Spec → Ticket → TDD）",
 			"从模糊需求到结构化执行，覆盖开发全链路",
 		],
