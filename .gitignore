@@ -44,8 +44,14 @@ next-env.d.ts
 tmp.md
 answer.txt
 resume-material.md
-bun.lock
 .pi-subagents/
 
 # bigpowers specs (local docs — do not commit)
 specs/
+
+# Claude and other AI tool directories
+.claude/
+agent/
+.agents/
+skills-lock.json
+.scratch/

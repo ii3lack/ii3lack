@@ -27,12 +27,10 @@
 	--color-accent-soft: oklch(58% 0.16 250 / 0.08);
 	--color-focus: oklch(58% 0.18 250);
 
-	--font-display:
-		var(--font-display), "Fraunces", "Tiempos", ui-serif, Georgia, serif;
-	--font-body:
-		var(--font-body), "IBM Plex Sans", "PingFang SC", "Hiragino Sans GB",
+	--font-display: "Fraunces", "Tiempos", ui-serif, Georgia, serif;
+	--font-body: "IBM Plex Sans", "PingFang SC", "Hiragino Sans GB",
 		"Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
-	--font-mono: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
+	--font-mono: "JetBrains Mono", ui-monospace, monospace;
 
 	--text-xs: 0.75rem;
 	--text-sm: 0.875rem;

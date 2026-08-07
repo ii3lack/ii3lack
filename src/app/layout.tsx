@@ -1,28 +1,19 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import "@fontsource/fraunces/300.css";
+import "@fontsource/fraunces/400.css";
+import "@fontsource/fraunces/500.css";
+import "@fontsource/fraunces/600.css";
+import "@fontsource/fraunces/700.css";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/ibm-plex-sans/700.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "@fontsource/jetbrains-mono/600.css";
+import "@fontsource/jetbrains-mono/700.css";
 import "./globals.css";
 import "./print.css";
-
-const display = Fraunces({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700"],
-	display: "swap",
-	variable: "--font-display",
-});
-
-const body = IBM_Plex_Sans({
-	subsets: ["latin"],
-	weight: ["400", "500", "600", "700"],
-	display: "swap",
-	variable: "--font-body",
-});
-
-const mono = JetBrains_Mono({
-	subsets: ["latin"],
-	weight: ["400", "500", "600", "700"],
-	display: "swap",
-	variable: "--font-mono",
-});
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://ii3lack.github.io/ii3lack"),
@@ -57,10 +48,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html
-			lang="zh-CN"
-			className={`${display.variable} ${body.variable} ${mono.variable}`}
-		>
+		<html lang="zh-CN">
 			<body>{children}</body>
 		</html>
 	);

@@ -1,11 +1,11 @@
 {
-	"name": "black-photographic-exhibition",
+	"name": "black",
 	"version": "0.1.0",
 	"private": true,
 	"author": {
 		"name": "black",
 		"email": "black524726@163.com",
-		"url": "https://github.com/ii3lack"
+		"url": "https://ii3lack.github.io/ii3lack/"
 	},
 	"scripts": {
 		"dev": "next dev",
@@ -14,9 +14,12 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@fontsource/fraunces": "^5.3.0",
+		"@fontsource/ibm-plex-sans": "^5.3.0",
+		"@fontsource/jetbrains-mono": "^5.3.0",
+		"next": "14.0.1",
 		"react": "^18",
-		"react-dom": "^18",
-		"next": "14.0.1"
+		"react-dom": "^18"
 	},
 	"devDependencies": {
 		"typescript": "^5",

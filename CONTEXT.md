@@ -22,6 +22,7 @@
 
 ## 已知决策
 
-- spec（`.scratch/resume-sync-site/`）决定"不加新数据文件"——候选 2（数据抽成独立模块）与之冲突，未执行。
+- spec 的"不加新数据文件"决策已重开（2026-08-07）：数据层现为独立模块 `src/app/resume-data.ts`（仍是单一数据层，README 为唯一内容基准）；`page.tsx` 只负责渲染。
+- 字体已自托管（`@fontsource/fraunces` + `ibm-plex-sans` + `jetbrains-mono`），构建零网络拉取（解决 Google Fonts 离线超时）。
 - 打印版文本允许与屏幕略有差异（用户："不管 PDF 打印"）；"恰好 2 页 A4" 不变量未复核。
-- 本地包管理器为 bun（`bun run build`）；CI workflow 仍用 pnpm（迁移未提交前 CI 正常）。
+- 包管理器已从 pnpm 迁到 bun（2026-08-07）：本地与 CI 均为 `bun install --frozen-lockfile` + `bun run build`；`bun.lock` 为唯一锁文件。
