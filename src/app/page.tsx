@@ -180,7 +180,7 @@ function Hero() {
 			</Reveal>
 			<Reveal delay={0.08}>
 				<h1 className="hero__title">
-					AI 全栈工程师 · 杭州 · 近 5 年 · 医疗信息化交付 + AI 应用探索
+					AI全栈工程师 · 杭州 · 近5年 · Agent应用
 				</h1>
 			</Reveal>
 			<Reveal delay={0.16}>
@@ -190,7 +190,7 @@ function Hero() {
 			</Reveal>
 			<Reveal delay={0.24}>
 				<p className="hero__sub">
-					医疗信息化交付 + AI 应用探索 · 从需求到上线 · 从设备到 HIS
+					设备集成 · AI 落地 · 系统交付
 				</p>
 			</Reveal>
 		</header>
