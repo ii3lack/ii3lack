@@ -12,20 +12,14 @@
 
 ---
 
-### 📊 关键数据
-
-`~2 周从 0 独立交付温岭眼科诊间数据对接系统`　`主导多院点医疗应用矩阵落地`　`约 300 名学生报名参展`
-
----
-
 ### 🎯 核心能力
 
 在无产品、无设计、无专职运维的环境下独立交付，在资源受限的团队里以解决问题、成功上线为唯一标准。
 
-- **全链路交付能力** — 独立完成需求梳理 → 方案设计 → 开发 → 部署。代表：温岭眼科诊间数据对接系统（~2 周从 0 独立交付）。
-- **多业务线应用矩阵主导** — 验光处方自动化 / 社区筛查 / 学生艺术展 / 渠道订单 ERP / 院点叫号多端 / 小程序矩阵，院点级定制化交付。
-- **跨端全栈与医疗设备集成** — Web（Vue 3 / React）/ 小程序（Taro）/ Electron 桌面端 / **Flutter 移动端** 全栈开发；后端 Python（FastAPI）/ PHP（ThinkPHP）/ Node.js。深度对接扫码枪 / 高拍仪 / 打印机 / Nidek / 目乐电脑验光仪 / 眼压计，打通设备数据采集 → 处方 PDF → 静默打印 → 上传 HIS 的全链路。
-- **AI 工具链成为工作方式** — hermes / claude code / pi 与 matt pocock skills 规划与开发，chrome devtools / codegraph 等 MCP 辅助；核心设计 / 架构 / 业务建模由我主导，代码实现按项目选择（部分项目 vibe coding，部分全手写）。
+- **医疗设备全链路集成** — 深度对接 Nidek / 目乐电脑验光仪、眼压计、眼底相机、扫码枪、高拍仪、打印机：WebSocket 设备直连 + 局域网硬件通信（Dart shelf 接收眼底相机照片）；打通设备数据采集 → 处方 PDF → 静默打印 → 经院内 HIS 接口写入的全链路；配套企业级 Windows 离线部署（安装包 + NSSM 服务管理 + 9 章部署 SOP），数据不出院。
+- **跨端全栈开发** — React（验光处方 / ERP 管理后台 / 票据编辑器）、Vue 3（筛查后台 / 叫号多端 / 艺术展后台）、Flutter（筛查设备端 / 社交 App）、Electron（桌面端 / 大屏）、Taro 小程序全栈；后端 Python FastAPI / PHP ThinkPHP / Node.js + MySQL / Redis 队列。
+- **从 0 到上线的独立交付** — 独立完成需求梳理 → 方案设计 → 开发 → 部署。代表：温岭眼科诊间数据对接系统（~2 周从 0 独立交付，半年扩展 3 院点）；主导多业务线应用矩阵（验光处方 / 社区筛查 / 渠道订单 ERP / 学生艺术展 / 院点叫号多端），院点级定制化交付。
+- **AI 工作流搭建与落地** — 搭建 hermes / claude code / pi 与 matt pocock skills 规划开发，chrome devtools / codegraph 等 MCP 辅助；AI 驱动交付加速（vibe coding），核心设计 / 架构 / 业务建模始终由我主导。
 
 ---
 
@@ -185,8 +179,8 @@
 
 **AI 工作流**
 
-- hermes / claude code / pi 编辑器
-- matt pocock skills 规划与开发
+- hermes / claude code / pi 等`Agent`使用
+- matt pocock skills 等skills接入日常开发工作流和办公工作流
 - chrome devtools / codegraph 等 MCP 辅助
 
 ---
