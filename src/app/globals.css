@@ -744,10 +744,9 @@ html.lenis body {
 	box-shadow: var(--shadow-card-hover);
 }
 .proj--featured {
-	grid-column: 1 / -1;
-	border-color: var(--line-2);
+	border-color: var(--line);
 	background: var(--surface);
-	box-shadow: var(--shadow-card-hover);
+	box-shadow: var(--shadow-card);
 }
 .proj--featured::before {
 	content: none;
